@@ -17,3 +17,4 @@
 - PART_SelectionRange
 #### 6. PART_Track 의도적인 이름 변경 후 영향(Effect) 체크
 #### 7. PART_SelectionRange 의도적인 이름 변경 후 영향(Effect) 체크
+#### 8. 실제 dotnet/wpf 오픈소스 (GitHub Repo) 확인 
