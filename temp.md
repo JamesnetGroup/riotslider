@@ -1,12 +1,14 @@
-#### 1. DemoApp 프로젝트 생성
-  - [ ] WPF Application 프로젝트 생성하기 (.NET 8.0 버전)
-  
-#### 2. Slider 기능 확인
+### 1. DemoApp 프로젝트 생성
+- [ ] WPF Application 프로젝트 생성하기 (.NET 8.0 버전)
+
+### 2. Slider 기능 확인
 - [ ] Orientation 속성 확인 (가로/세로 변경해보기)
 - [ ] Minimum(0), Maximum(100) 지정하기 (Slider 길이(Range) 지정하기)
 - [ ] Value 값 지정(30)하기 (Minimum/Maximum 값과 비교)
 - [ ] SelectionStart(20)/SelectionEnd(60) 값 지정하기
 - [ ] IsSelectionRangeEnabled 활성화 (Selection Range 활성화 확인하기)
+
+#### 2.1 Slider 주요 속성들이 적용된 소스코드 모습
 
 ```xaml
 <Slider Orientation="Horizontal"
@@ -18,24 +20,79 @@
         IsSelectionRangeEnabled="True"/>
 ```
 
-#### 3. 원본 스타일 추출
-- [ ] 현재 파일에 추출
-- [ ] App.xaml 파일에 추출
-- [ ] 새로운 ResourceDictionary 파일에 추출
-#### 4. Orientation 분기
-- [ ] Template 스위칭 확인 (Horizontal/Vertical)
+
+#### 2.2 Horizontal 모드 (Slider)
+> Orientation="Horizontal"
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/9b8a3528-6a84-4982-aff1-78cd9eb3cdb7" width="300"/>
+
+#### 2.3 Vertical 모드 (Slider)
+> Orientation="Vertical"
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/bbcbeaa9-1763-4435-b92b-be2a71a5ee73" width="300"/>
+
+
+
+### 3. 원본 스타일 추출
+- [ ] 기본 컨트롤 (Slider) 스타일 추출하기 (Edit a Copy...)
+  - [ ] 현재 파일에 추출 (This document)
+  - [ ] App.xaml 파일에 추출 (Application)
+  - [ ] 새로운 ResourceDictionary 파일을 생성해서 추출 (Resource Dictionary)
+  - [ ] 최종적으로 App.xaml에 추출하도록 한다.
+
+
+
+#### 3.1 스타일 추출 과정
+> Slider > Right Click > Edit Template > Edit a Copy...
+
+<img width="365" alt="image" src="https://github.com/vickyqu115/riotslider/assets/52397976/0d7f2e38-f616-4260-a256-f3e4eb5c9f09">
+
+_Create ControlTemplate Resource (Window)_  
+
+![image](https://github.com/vickyqu115/riotslider/assets/52397976/d895d1fd-f709-4909-a968-3cd4692550ac)
+
+
+
+#### 4. Orientation 분기 확인
+- [ ] App.xaml 추출된 리소스에서 Orientation 분기 확인
+  - [ ] Template 스위칭 확인
+  - [ ] Horizontal 전용 템플릿 확인
+  - [ ] Vertical 전용 템플릿 확인
+-----
+
+#### Dotnet WPF에서 제공하는 Slider Original Style
+```xaml
+<Style x:Key="SliderStyle1" TargetType="{x:Type Slider}">
+    <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource SliderThumb.Static.Foreground}"/>
+    <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+    <Style.Triggers>
+        <Trigger Property="Orientation" Value="Vertical">
+            <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+```
+
+
+
 #### 5. PART_ 컨트롤 확인 
 - [ ] PART_Track
 - [ ] PART_SelectionRange
+
 #### 6. PART_Track 의도적인 이름 변경 후 영향(Effect) 체크
 #### 7. PART_SelectionRange 의도적인 이름 변경 후 영향(Effect) 체크
 #### 8. 실제 dotnet/wpf 오픈소스 (GitHub Repo) 확인 
 #### 9. 프로젝트 생성: CustomControl
 - WPF CustomControl Library: RiotSliderControl
+  
 #### 10. 기본파일 삭제: 
 - AssemblyInfo.cs
 - Themes/Generic.xaml
 - CustomControl1.cs
+
 #### 11. WPF/CustomControl 파일 생성
 - RiotSlider.cs
 - AssemblyInfo.cs/Generic.xaml 자동생성 확인
