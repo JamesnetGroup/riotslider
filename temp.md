@@ -1,20 +1,32 @@
 #### 1. DemoApp 프로젝트 생성
-- WPF Application
+  - [ ] WPF Application 프로젝트 생성하기 (.NET 8.0 버전)
+  
 #### 2. Slider 기능 확인
-- Orientation 가로/세로
-- Minimum, Maximum (Range)
-- Value 
-- SelectionStart, SelectionEnd 
-- IsSelectionRangeEnabled 활성화
+- [ ] Orientation 속성 확인 (가로/세로 변경해보기)
+- [ ] Minimum(0), Maximum(100) 지정하기 (Slider 길이(Range) 지정하기)
+- [ ] Value 값 지정(30)하기 (Minimum/Maximum 값과 비교)
+- [ ] SelectionStart(20)/SelectionEnd(60) 값 지정하기
+- [ ] IsSelectionRangeEnabled 활성화 (Selection Range 활성화 확인하기)
+
+```xaml
+<Slider Orientation="Horizontal"
+        Minimum="0"
+        Maximum="100"
+        Value="30"
+        SelectionStart="20"
+        SelectionEnd="60"
+        IsSelectionRangeEnabled="True"/>
+```
+
 #### 3. 원본 스타일 추출
-- 현재 파일에 추출
-- App.xaml 파일에 추출
-- 새로운 ResourceDictionary 파일에 추출
+- [ ] 현재 파일에 추출
+- [ ] App.xaml 파일에 추출
+- [ ] 새로운 ResourceDictionary 파일에 추출
 #### 4. Orientation 분기
-- Template 스위칭 확인 (Horizontal/Vertical)
+- [ ] Template 스위칭 확인 (Horizontal/Vertical)
 #### 5. PART_ 컨트롤 확인 
-- PART_Track
-- PART_SelectionRange
+- [ ] PART_Track
+- [ ] PART_SelectionRange
 #### 6. PART_Track 의도적인 이름 변경 후 영향(Effect) 체크
 #### 7. PART_SelectionRange 의도적인 이름 변경 후 영향(Effect) 체크
 #### 8. 실제 dotnet/wpf 오픈소스 (GitHub Repo) 확인 
