@@ -58,9 +58,9 @@ _Create ControlTemplate Resource (Window)_
   - [ ] Template 스위칭 확인
   - [ ] Horizontal 전용 템플릿 확인
   - [ ] Vertical 전용 템플릿 확인
------
 
-#### Dotnet WPF에서 제공하는 Slider Original Style
+#### 4.1 Slider Style (Template)
+> Dotnet WPF에서 제공하는 Slider Original Style
 ```xaml
 <Style x:Key="SliderStyle1" TargetType="{x:Type Slider}">
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
@@ -76,9 +76,7 @@ _Create ControlTemplate Resource (Window)_
 </Style>
 ```
 
-
-
-#### 5. PART_ 컨트롤 확인 
+### 5. PART_ 컨트롤 확인 
 - [ ] PART_Track
 - [ ] PART_SelectionRange
 
