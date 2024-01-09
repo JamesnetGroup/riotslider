@@ -7,6 +7,7 @@
 - [ ] Value 값 지정(30)하기 (Minimum/Maximum 값과 비교)
 - [ ] SelectionStart(20)/SelectionEnd(60) 값 지정하기
 - [ ] IsSelectionRangeEnabled 활성화 (Selection Range 활성화 확인하기)
+- [ ] SelectionEnd RelativeSource Binding (Value)
 
 #### 2.1 Slider 주요 속성들이 적용된 소스코드 모습
 
@@ -18,6 +19,10 @@
         SelectionStart="20"
         SelectionEnd="60"
         IsSelectionRangeEnabled="True"/>
+```
+
+```xaml
+SelectionEnd="{Binding RelativeSource={RelativeSource Self}, Path=Value}"
 ```
 
 
