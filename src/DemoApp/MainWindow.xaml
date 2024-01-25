@@ -1,0 +1,14 @@
+﻿<Window x:Class="DemoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:riots="clr-namespace:RiotSlider;assembly=RiotSlider"
+        xmlns:local="clr-namespace:DemoApp"
+        mc:Ignorable="d"
+        Background="#010A13"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <riots:RiotSlider Width="200" Height="50"/>
+    </Grid>
+</Window>
