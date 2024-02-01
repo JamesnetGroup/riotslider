@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:riots="clr-namespace:RiotSlider;assembly=RiotSlider"
         xmlns:local="clr-namespace:DemoApp"
-        mc:Ignorable="d"
+        xmlns:riot="clr-namespace:SliderControl;assembly=SliderControl"
         Background="#010A13"
+        mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <riots:RiotSlider Width="200" Height="50"/>
+        <riot:RiotSlider Width="200" Height="50"/>
     </Grid>
 </Window>
