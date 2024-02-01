@@ -1,12 +1,50 @@
-## SLIDER 소개
+## WPF 슬라이더 컨트롤의 세부 메커니즘 분석 및 커스터마이징 (Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control)
+
+WPF의 기본 컨트롤 중 Button, CheckBox, ToggleButton과 같은 컨트롤들은 구조적으로 간단하여, Code behind 없이 XAML만으로도 충분히 구현할 수 있는 단순한 컨트롤들입니다. 반면, TextBox, ComboBox, Slider 등과 같은 컨트롤들은 XAML 뿐만 아니라 C# 코드를 통한 복합적인 처리가 필요합니다. 이러한 컨트롤들의 기본 CustomControl 구성을 잘 이해하고 있으면, 새롭게 커스터마이징할 때 매우 유용합니다.
+
+특히, 이번에는 WPF의 기본 Slider 컨트롤을 통해 WPF 컨트롤의 내부 메커니즘을 깊이 있게 이해해볼 예정입니다. 모든 컨트롤의 내부 구조를 일일이 연구할 필요는 없으나, WPF의 소스코드가 GitHub에 오픈소스로 공개되어 있기 때문에, 필요할 때마다 GitHub 레포지터리에서 해당 컨트롤을 찾아 분석하는 것이 좋습니다.
+
+앞으로 Slider 뿐만 아니라 다양한 컨트롤들을 해부하고 분석할 계획입니다. 저희의 GitHub 레포지터리, CodeProject Article, 그리고 YouTube 및 BiliBili에서 제공하는 튜토리얼 영상들에 많은 관심과 지지를 부탁드립니다.
 
 
 
-### 1. DemoApp 프로젝트 생성
+## WPF Tutorial Series
 
-- [ ] WPF Application 프로젝트 생성하기 (.NET 8.0 버전)
+> 현재까지 4개의 튜토리얼 시리즈가 YouTube와 BiliBili를 통해 공개되었습니다. 이 영상들은 영어와 중국어로 제공되며, 유튜브에서는 한글 자막도 지원됩니다. 고급 수준의 소스코드와 상세한 전문적 설명을 통해 WPF의 깊이를 더욱 끌어올릴 수 있는 기회가 되길 바랍니다.
 
-### 2. Slider 기능 확인
+- [x] Theme Switch: [Youtube](), [BiliBili](), [CodeProject]()
+
+- [x] Riot PlayButton: [Youtube](), [BiliBili](), [CodeProject]()
+
+- [x] Magic Navigation Bar: [Youtube](), [BiliBili](), [CodeProject]()
+
+- [ ] Riot Slider: [BiliBili]()
+
+
+
+## Specification
+
+이 프로젝트는 닷넷 코어 기반이지만 WPF를 사용하기 때문에 닷넷의 타겟 기반은 Windows 단독으로 지정됩니다. 또한 NET 8.0을 동작하기 위한 필수 비주얼스튜디오 버전인 **VS2022**를 통해 실행됩니다. 또는 JetBrains 사의 Rider를 사용하는 것도 가능합니다.
+
+- [x] OS: Microsoft Windows 11
+- [x] IDE: Microsoft Visual Studio 2022
+- [x] Version: C# / NET 8.0 / WPF / windows target only
+- [x] NuGet: Jamesnet.Wpf 
+
+>  Jamesnet.Wpf 라이브러리를 통해 JamesGrid를 사용합니다. 이는 선택적인 사항이며, 선호하는 라이브러리, 레이아웃 구성 방식에 따라 제외하더라도 상관 없습니다.
+
+
+
+### 2. Slider 주요 기능 확인
+
+WPF Slider 컨트롤은 Button과 같은 일반적인 컨트롤과는 달리 다양한 속성들이 존재합니다. 그 중에서도 Slider에서만 동작하는 특별한 의미를 지닌 속성들이 다양하게 제공되는데 주요 속성들은 다음과 같습니다.
+
+**Orientation:** Slider는 WPF에서 제공되는 기본 컨트롤이므로, 범용적인 기능을 제공하는 것에 초점을 두고 있습니다. 따라서 일반적으로는 Horizontal 방향으로 대부분 사용하겠지만, 경우에 따라서는 Vertical 방향으로도 사용해야할 필요가 있을 것입니다. 따라서 이 기본 Template에서는 Orientation 속성을 통해 디자인이 분기되어 사용할 수 있습니다. 단, 이번 프로젝트에서는 Horizontal 방향만 CustomControl으로 구현할 것이기 때문에 Orientation을 통한 분기 작업을 하지는 않을 것입니다.
+
+**Minimum, Maximum:** 이 속성은 선택된 Value 값이 최소 또는 최대 값을 넘지 않도록 설정하는 역할 뿐만이 아니라 전체 길이를 비율로 계산하여 Value 위치를 값으로 변환하기 위해 필수적으로 필요한 기준 값입니다. 일반적으로는 0
+
+
+
 - [ ] Orientation 속성 확인 (가로/세로 변경해보기)
 - [ ] Minimum(0), Maximum(100) 지정하기 (Slider 길이(Range) 지정하기)
 - [ ] Value 값 지정(30)하기 (Minimum/Maximum 값과 비교)
