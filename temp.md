@@ -1,4 +1,9 @@
+## SLIDER 소개
+
+
+
 ### 1. DemoApp 프로젝트 생성
+
 - [ ] WPF Application 프로젝트 생성하기 (.NET 8.0 버전)
 
 ### 2. Slider 기능 확인
