@@ -22,3 +22,14 @@ Moving forward, we plan to dissect and analyze various controls, not just the Sl
 - [x] Magic Navigation Bar: [Youtube](https://youtu.be/dxuLWlukthg?si=CpvQ-TJ2tQu9sY3F), [BiliBili](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
 
 - [ ] Riot Slider: [BiliBili]()
+
+## Specifications:
+
+This project is based on .NET Core but is designated for Windows only due to the use of WPF. It is executable through VS2022, which is mandatory for running NET 8.0. Alternatively, JetBrains' Rider can also be used.
+
+- [x] OS: Microsoft Windows 11
+- [x] IDE: Microsoft Visual Studio 2022
+- [x] Version: C# / NET 8.0 / WPF / windows target only
+- [x] NuGet: Jamesnet.Wpf
+
+> Jamesnet.Wpf library is utilized for employing JamesGrid. This is optional and can be omitted based on preferred libraries and layout configurations.
