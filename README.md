@@ -13,6 +13,9 @@ This time, we will delve deeply into the internal mechanisms of WPF's standard S
 
 Moving forward, we plan to dissect and analyze various controls, not just the Slider. We appreciate your continued interest and support for our GitHub repository, CodeProject articles, and tutorial videos provided on YouTube and BiliBili.
 
+![20240201163433798](https://github.com/vickyqu115/riotslider/assets/101777355/f30773e5-9ad3-4b19-b104-5c026af2577e)
+
+
 ## WPF Tutorial Series
 
 > To date, four tutorial series have been released on YouTube and BiliBili. These videos are available in English and Chinese, with Korean subtitles on YouTube. We hope these videos, through sophisticated source code and detailed expert explanations, will enhance your understanding of WPF.
