@@ -3,6 +3,8 @@ Introduction
 
 [Pictogrammers(rhombus-split-outline)](https://pictogrammers.com/library/mdi/icon/rhombus-split-outline/)
 
+![WechatIMG12](https://github.com/vickyqu115/riotslider/assets/101777355/b686d831-2de6-410b-949d-52b6b9993873)
+
 ## Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control
 
 Among WPF's basic controls such as Button, CheckBox, and ToggleButton, the structure is relatively straightforward, enabling complete implementation through XAML without code-behind. In contrast, controls like TextBox, ComboBox, and Slider necessitate intricate handling through both XAML and C# code. A solid understanding of these controls' fundamental CustomControl structures proves incredibly beneficial when customizing afresh.
