@@ -396,7 +396,7 @@ _Slider에서는 두 개의 `PART_` 컨트롤이 존재합니다._
 
 - [x] 이름 변경 전: **PART_SelectionRange**
 
-<img src="C:\Users\james\AppData\Roaming\Typora\typora-user-images\image-20240207030311481.png" style="width: 400px; float: left"/>
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/664d0d18-1fd4-4c70-bb91-b9d655bada3d" style="width:400px; float: left"/>
 
 > 변경 전, 정상적으로 보이는 Rage 영역을 확인할 수 있습니다.
 
@@ -404,7 +404,7 @@ _Slider에서는 두 개의 `PART_` 컨트롤이 존재합니다._
 
 - [x] 이름 변경 후: **PART_SelectionRange1**
 
-<img src="C:\Users\james\AppData\Roaming\Typora\typora-user-images\image-20240207024513379.png" style="width:400px; float: left"/>
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/c1708893-0b3c-47fa-a793-c26d85ad55ca" style="width:400px; float: left"/>
 
 > 이제는 더 이상 Range 영역이 보이지 않습니다.
 
