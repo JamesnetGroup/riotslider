@@ -106,8 +106,6 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 그럼 Hrizontal/Vertical 속성이 각각 적용된 모습도 한번 살펴볼까요?
 
-
-
 - [x] Orientation: **Horizontal**
 
 <img src="https://github.com/vickyqu115/riotslider/assets/52397976/9b8a3528-6a84-4982-aff1-78cd9eb3cdb7" width="300" style="float:left"/>
@@ -176,10 +174,10 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 ##### 추출 방법과 절차: Visual Studio
 
-- [ ] 기본 컨트롤 (Slider) 스타일 추출하기 (Edit a Copy...)
-- [ ] 현재 파일에 추출 (This document)
-- [ ] App.xaml 파일에 추출 (Application)
-- [ ] 새로운 ResourceDictionary 파일을 생성해서 추출 (Resource Dictionary)
+- [x] 기본 컨트롤 (Slider) 스타일 추출하기 (Edit a Copy...)
+- [x] 현재 파일에 추출 (This document)
+- [x] App.xaml 파일에 추출 (Application)
+- [x] 새로운 ResourceDictionary 파일을 생성해서 추출 (Resource Dictionary)
 
 
 
@@ -190,8 +188,6 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 
 과정을 단계적으로 살펴봅시다.
-
-
 
 - [x] 스타일 추출 명령: Slider > Right click > Edit Template > Edit a Copy...
 
@@ -713,12 +709,16 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 사실, 이 디자인은 이미 몇년 전 WPF로 높은 수준의 게임 클라이언트를 구현해보고 싶다는 호기심에 시작되었던 "리그오브레전드" 애플리케이션의 일부입니다. 따라서 이 Slider 컨트롤이 실제 어떤 느낌으로 동작하는지 확인해보고 싶다면 [이 레포지터리](https://github.com/jamesnet214/leagueoflegends)를 확인해보시기 바랍니다. 그리고 Fork를 통해 누구나 기여하실 수도 있습니다. 현재까지 80회 이상의 Fork를 기록하고 있습니다.
 
-![image](https://github.com/vickyqu115/riotslider/assets/52397976/003948fe-70c3-4be4-927f-d0b391ac7b05)
+
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/003948fe-70c3-4be4-927f-d0b391ac7b05" style="width:600px; float: left"/>
+
+
 
 
 그럼 지금부터 새로운 (CustomControl) Slider 컨트롤을 창조해봅시다.
 
-
+  
 
 ### 11. 프로젝트 생성 및 시작 준비
 
@@ -735,11 +735,21 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 
 
+<사진>
+
+
+
 ##### 기본 파일 삭제:
 
 - [x] AssemblyInfo.cs
 - [x] Themes/Generic.xaml
 - [x] CustomControl1.cs
+
+
+
+<사진>
+
+
 
 삭제하는 모든 파일들은 사실 (CustomControl) 컨트롤을 구성하기 위한 필수 파일이지만 위치 또는 프로젝트 구성을 다시 구성하기 위해 삭제하는 것입니다.
 
@@ -751,6 +761,12 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 - [x] RiotSlider.cs (CustomControl) 클래스 생성
 
+
+
+<사진>
+
+
+
 CustomControl 클래스 타입으로 파일을 생성할 경우에만 DefaultStyleKey 관련 구문이 static 생성자와 함께 포함됩니다. 만약 생성과정에서 타입을 잘못 선택할 경우 CustomControl 관련 코드 구문이 누락되기 때문에 이를 직접 입력해야하는 번거로움이 생기므로 과정을 주의깊게 확인하는 것이 중요합니다.
 
 
@@ -759,6 +775,12 @@ CustomControl 클래스 타입으로 파일을 생성할 경우에만 DefaultSty
 
 - [x] Properties/AssemblyInfo.cs
 - [x] Themes/Generic.xaml
+
+
+
+<사진>
+
+
 
 CustomControl 클래스 타입으로 파일을 생성하지 않을 경우, 마찬가지로 해당 파일들이 자동으로 생성되지 않습니다. 이 점도 잘 유의하시기 바랍니다.
 
@@ -837,6 +859,10 @@ CustomControl 클래스 타입으로 파일을 생성하지 않을 경우, 마�
 
 
 
+<사진>
+
+
+
 이것으로 (CustomControl) RiotSlider 컨트롤을 구성하고 제대로 실행되는지를 확인하는 단계까지 마쳤습니다.
 
 CustomControl 방식은 UserControl 방식보다 복잡하기 때문이 지금과 같은 과정이 익숙해질 때까지는 어려움이 따를 수 있습니다. 따라서 이를 극복하기 위해서는 반복적인 훈련 과정이 필요합니다. 
@@ -888,6 +914,12 @@ WPF는 꽤나 강력하고 유연한 (Responsive) 반응형 레이아웃을 사�
 
 - [x] 컨트롤 크기 확인: Width/Height
 - [x] 컨트롤 색상 확인: Background
+
+
+
+<사진>
+
+
 
 실행 결과 확인 후 이상이 없다면 Background 색상을 다시 제거하도록 합시다.
 
@@ -983,17 +1015,19 @@ Track은 Thumb를 포함한 Slider의 핵심 컨트롤 요소입니다. 또한 `
 
 
 
+<사진>
+
+
+
 Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기의 타원이 Track 영역 안에서 움직이게 됩니다. 하지만 Track의 이름을 `PART_Track`이 아닌 다른 이름으로 변경한다면 Thumb의 움직임을 바로 잃게 될 것입니다. 
 
 > 이러한 상관관계를 다시 한 번 인지하기 위해 이름을 변경해보세요.
 
 
 
-### 15. 슬라이더 바 추가:
+### 15. 슬라이더 바 추가
 
-다음은 슬라이더 바를 추가할 차례입니다. 이번 작업은 기능상의 간섭이 없는 지극히 디자인적인 요소를 추가하는 것이기 때문에ㄴ
-
-이제 Track의 레일과 같은 디자인 요소가 될 바를 추가할 차례입니다. 기능상의 간섭이 없는 지극히 디자인적인 요소이기 때문에 원하는데로 만들면 됩니다. 심지어 없어도 되지만 아래와 같이 추가해보도록 하겠습니다.
+다음은 슬라이더 바를 추가할 차례입니다. 이 작업은 기능과 관련이 없는 오직 디자인적인 요소만을 추가합니다. 따라서 생략해도 기능에는 지장이 없지만, 다음 순서인 SelectionRange 단계와 디자인적 요소를 결합할 필요성이 있기 때문에 이번 작업 또한 주의 깊게 살펴 볼 필요성이 있습니다.
 
 - [x] Border 추가
 
@@ -1002,7 +1036,7 @@ Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기�
 
 
 
-색상을 지정할 수 있는 모든 컨트롤은 모두 사용하여도 이론상 문제는 없지만 일반적으로는 Border를 사용하는 것이 직관적이면서도 여러므로 좋습니다. 특히 CornerRadius 속성을 통한 모서리 부분의 라운딩 처리가 가능하여 다른 컨트롤보다 좀 더 풍부하게 디자인을 표현할 수 있다는 장점이 있습니다.
+Track의 길이를 시각적으로 표현해야 하기 때문에 Border와 같은 레이아웃을 사용하는 것이 효과적입니다. 특히 Border의 경우에는 CornerRadius 특성을 통해 모서리 부분의 라운딩 처리가 가능하기 때문에 다른 컨트롤에 비해 좀 더 풍부한 디자인을 표현할 수 있다는 장점을 가질 수 있습니다.
 
 
 
@@ -1013,23 +1047,63 @@ Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기�
 
 
 
-### 15. 슬라이더 바 미세 조정하기
+<사진>
+
+
+
+결과처럼, 슬라이더 바의 디자인과 위치를 Track의 이동 경로와 Thumb의 움직임과 잘 조화되도록 배치하는 것이 이번 단계의 핵심 포인트입니다.
+
+
+
+### 16. 슬라이더 바와 Track 간의 오차 간격 맞추기
+
+슬라이더 바의 디자인과 위치가 그럴 듯 하게 배치된 것 같지만, 사실 Track의 이동 범위는 처음과 끝에 각각 Thumb의 반지름 만큼의 영역을 제한하고 있습니다. 실제로 WPF 원본 소스코드를 살펴보면 아래와 같은 코드를 발견할 수 있습니다.
+
+```csharp
+Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
+```
+
+> 위 소스코드는 Orientation="Horizontal" 기준입니다. 따라서 값이 Vertical 방향으로 변경되면 Height으로 변경됩니다. 맞는지 하번 찾아보세요.
+
+
+
+이와 같은 코드에서 알 수 있듯, Track의 실제 이동 범위 또한 내부적으로 ThumbSize의 반지름 만큼을 양쪽으로 제한하고 있다는 것을 유추해볼 수 있습니다. 따라서 우리가 앞서 추가한 슬라이더 바는 Slider 컨트롤 내부에서 관리되는 `PART_` 요소가 아니기 때문에 직접 이 규칙을 적용해야 합니다. 이를 동적으로 처리하는 방법도 있겠지만, 이번 작업에서는 Margin 속성을 통해 슬라이더 바와 Track 이동 범위간의 오차를 정확하게 맞춰보도록 하겠습니다.
 
 
 
 ##### Thumb Ellipse 투명도 설정:
 
+작업을 좀 더 편하게 하기 위해 Ellipse 컨트롤의 투명도를 지정합니다.
+
 - [x] Ellipse Fill: #55000000
 
-
-
-##### 슬라이더 바 Margin 계산:
-
-- [x] Ellipse 반지름만큼 양쪽에 Margin 추가: 25 0 25 0
+> WPF에서 요소의 투명도를 지정할 때 객체 자체의 투명도인 Opacity를 사용하는 방법도 일반적이지만, 색상의 알파 값을 이용한다면 그 특정 색상만 투명화를 적용시킬 수 있기 때문에 훨씬 더 유용하게 사용될 수 있습니다. WPF의 꿀팁 중 하나이니 유용하게 사용해보세요.
 
 
 
-### 16. PART_SelectionRange
+##### 슬라이더 바에서 Thumb 반지름 만큼 Margin 적용:
+
+현재 Ellipse의 Width 너비가 50이기 때문에 좌/우 각각 25만큼 씩의 Margin을 적용합니다.
+
+- [x] Margin="25 0 25 0"
+
+
+
+##### 결과 확인:
+
+- [x] Thumb 반지름 만큼의 Margin 여백확인
+
+
+
+<사진>
+
+
+
+결과처럼 Track의 최대 이동범위와 슬라이더 바의 디자인상 크기가 정확하게 일치한 것을 확인할 수 있습니다. 
+
+
+
+### 17. PART_SelectionRange
 
 - [x] Border 추가: Height 2.5 Background: #000000
 
