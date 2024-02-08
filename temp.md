@@ -713,6 +713,7 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 사실, 이 디자인은 이미 몇년 전 WPF로 높은 수준의 게임 클라이언트를 구현해보고 싶다는 호기심에 시작되었던 "리그오브레전드" 애플리케이션의 일부입니다. 따라서 이 Slider 컨트롤이 실제 어떤 느낌으로 동작하는지 확인해보고 싶다면 [이 레포지터리](https://github.com/jamesnet214/leagueoflegends)를 확인해보시기 바랍니다. 그리고 Fork를 통해 누구나 기여하실 수도 있습니다. 현재까지 80회 이상의 Fork를 기록하고 있습니다.
 
+![image](https://github.com/vickyqu115/riotslider/assets/52397976/003948fe-70c3-4be4-927f-d0b391ac7b05)
 
 
 그럼 지금부터 새로운 (CustomControl) Slider 컨트롤을 창조해봅시다.
