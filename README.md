@@ -95,3 +95,22 @@ Let's take a closer look at a simplified part of the Slider to better understand
     </Style.Triggers>
 </Style>
 
+You can see that the (ControlTemplate) template switches based on the Orientation property in the trigger. Thus, a closer look at the actual configuration of this control can easily illustrate the significant role of the Orientation property.
+
+> It's an interesting part. Could you have imagined or applied the concept of switching templates through Orientation before seeing the original source? Open source can inspire in such ways. And let's note that the optimal timing for switching templates is indeed through the "Style.Trigger".
+
+For this tutorial video, we will only implement the Horizontal direction, so we will not perform any branch switching through Orientation. However, you are encouraged to try creating a Vertical version and submit a Pull Request via Fork. Consider it a mission.
+
+Let's also take a look at how the Horizontal/Vertical properties are applied:
+
+- [x] Orientation: **Horizontal**
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/9b8a3528-6a84-4982-aff1-78cd9eb3cdb7" width="300" style="float:left"/>
+
+> The SelectionRange (blue) area that will be discussed below is also visible.
+
+- [x] Orientation: **Vertical**
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/bbcbeaa9-1763-4435-b92b-be2a71a5ee73" width="300" style="float:left"/>
+
+> Similarly, you will find quite a few controls that switch the (ControlTemplate) template itself in a similar manner (e.g., ScrollViewer).
