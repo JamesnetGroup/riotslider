@@ -15,6 +15,32 @@ Moving forward, we plan to dissect and analyze various controls, not just the Sl
 
 ![20240201163433798](https://github.com/vickyqu115/riotslider/assets/101777355/f30773e5-9ad3-4b19-b104-5c026af2577e)
 
+## Contents
+
+1. WPF Tutorial Series
+2. Specification
+3. Creating an Application Project
+4. Analyzing the Main Features of Slider
+5. Extracting the Original Style Process
+6. Analysis of Extracted Source Code
+7. Checking Code Behind (GitHub Open Source)
+8. OnApplyTemplate in Cross-Platform
+9. Concluding the Slider Analysis
+10. Creating a Riot-Style Slider (CustomControl) Control
+11. Project Creation and Preparation for Start
+12. TextBlock (Hi Slider)
+13. Adding References and Testing Execution
+14. Setting the Size of Riot Slider
+15. PART_Track
+16. Adding the Slider Bar
+17. Aligning the Gap Between Slider Bar and Track
+18. PART_SelectionRange
+19. Adding Riot-Style Design Elements
+20. Implementing a Riot-Style Thumb
+21. Declaring Thumb Resources
+22. Completing the RiotSlider Template (Finishing Touches)
+23. Final Remarks
+
 
 ## WPF Tutorial Series
 
@@ -37,4 +63,35 @@ This project is based on .NET Core but is designated for Windows only due to the
 - [x] Version: C# / NET 8.0 / WPF / windows target only
 - [x] NuGet: Jamesnet.Wpf
 
-> Jamesnet.Wpf library is utilized for employing JamesGrid. This is optional and can be omitted based on preferred libraries and layout configurations.
+Using the latest version of Windows as your operating system is recommended. However, if you are considering platform expansion to Avalonia UI, Uno Platform, MAUI, etc., it's also worth considering MacOS as a sub-device. We are using Thinkpad/Macbooks as well. Note that Visual Studio is not available on MacOS or Linux-based systems, so Rider is the only alternative. ~~vscode~~
+
+## 3. Creating an Application Project
+
+To get started, you first need to create a WPF Application project.
+
+- [x] Project Type:WPF Application
+- [x] Project Name: DemoApp
+- [x] Project Version: .NET 8.0
+
+## 4. Analyzing the Main Features of Slider
+
+The WPF Slider control, unlike simpler controls such as Button, has a variety of properties. These properties play crucial functional roles in the control, and some operate in unique ways, making them particularly worthy of attention.
+
+**Orientation:**
+
+Controls in WPF often have a versatile nature, and the Orientation property of the Slider control is a prime example. This property allows for specifying the direction as either horizontal or vertical.
+
+The Orientation property can also be found in the StackPanel control. While the default value of Orientation in StackPanel is Vertical, the default for Slider's Orientation is Horizontal. Thus, it is common to use the Slider in a Horizontal format, which might be why the Orientation feature is not widely known.
+
+Let's take a closer look at a simplified part of the Slider to better understand Orientation:
+
+```xaml
+<Style TargetType="{x:Type Slider}">
+    <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+    <Style.Triggers>
+        <Trigger Property="Orientation" Value="Vertical">
+            <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+
