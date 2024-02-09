@@ -268,3 +268,46 @@ Let's verify this precisely. The common elements included are as follows:
 
 
 We can see that the common elements are included in both ControlTemplates, confirming that both have the same composition. Now, let's focus on and examine only the SliderHorizontal part.
+
+
+##### Naming rule: `PART_`
+
+In the structure of (CustomControl) controls, maintaining a tight connection between XAML and Code-behind is crucial. However, connecting them through the GetTemplateChild method to find control names can be visually unappealing. To mitigate this development approach and manage it systematically, the `PART_` naming rule is used.
+
+This rule prefixes all control names found through GetTemplateChild with `PART_`, allowing you to guess the function in XAML. Thus, when analyzing (ControlTemplate) controls, discovering a control named starting with `PART_` suggests it's likely an essential element, and you can anticipate the side effects that might occur if it's removed.
+
+Ultimately, this is immensely helpful in implementing CustomControls. Moreover, this rule is common not only in WPF but also in other cross-platforms sharing XAML, emphasizing its importance.
+
+_Slider contains two `PART_` controls._
+
+- [x] PART_Track
+- [x] PART_SelectionRange
+
+Consequently, aside from these two `PART_` controls, the rest are not used in Code-behind, ensured by this naming rule. Therefore, adhering strictly to this rule in CustomControl development is crucial.
+
+##### Test: Check the impact after intentionally changing the name of PART_Track
+
+Let's intentionally change the name of the `PART_Track` control.
+
+```xaml
+<Track x:Name="PART_Track1" Grid.Row="1">
+    ...
+</Track>
+```
+
+
+> Ensure you're in the correct Sliderhorizontal area.
+
+Now, when you run the application, dragging the Track's Thumb will no longer move it left or right, as seen in the tutorial video. The reason the Thumb no longer moves is that the intentional name change prevents Code-behind from finding the PART_Track control through GetTemplateChild.
+
+Since the PART_Track control cannot be found, there's no target for the mouse drag to move. Reverting the name to PART_Track1 will restore functionality.
+
+> This phenomenon can be observed in many other standard controls, notably the TextBox’s PART_ContentHost.
+
+##### Test: Check the impact after intentionally changing the name of PART_SelectionRange
+Next, let's intentionally change the name of the PART_SelectionRange control.
+
+```xaml
+<Rectangle x:Name="PART_SelectionRange1" .../>
+```
+
