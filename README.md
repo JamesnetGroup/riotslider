@@ -310,4 +310,89 @@ Next, let's intentionally change the name of the PART_SelectionRange control.
 ```xaml
 <Rectangle x:Name="PART_SelectionRange1" .../>
 ```
+> Ensure you're in the correct Sliderhorizontal area (x2).
 
+And if you look at the trigger section, there are more parts using PART_SelectionRange, so this part should be changed as well.
+
+
+```xaml
+<Trigger Property="IsSelectionRangeEnabled" Value="true">
+    <Setter Property="Visibility" TargetName="PART_SelectionRange1" Value="Visible"/>
+</Trigger>
+```
+> Ensure you're in the correct Sliderhorizontal area (x3).
+
+Also, in Slider, ensure all properties are set to activate the PART_SelectionRange.
+
+```xaml
+<Slider Style="{DynamicResource SliderStyle1}"
+        Minimum="0" Maximum="100"
+        SelectionStart="0" SelectionEnd="50"
+        IsSelectionRangeEnabled="True"/>
+```
+
+> You need to set Minimum/Maximum, SelectionStart/SelectionEnd, and IsSelectionRange to activate the Range area.
+
+ - [x] Before name change: PART_SelectionRange
+
+  <img src="https://github.com/vickyqu115/riotslider/assets/52397976/664d0d18-1fd4-4c70-bb91-b9d655bada3d" style="width:400px; float: left"/>
+
+  > Before the change, you can see the Range area appearing normally.
+
+ - [x] After name change: PART_SelectionRange1
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/c1708893-0b3c-47fa-a793-c26d85ad55ca" style="width:400px; float: left"/>
+
+
+> Now, the Range area no longer appears.
+
+Similarly, because the PART_SelectionRange control cannot be internally found, there's no target for calculating the Range area.
+
+Thus, WPF controls are implemented more loosely than expected while forming a modular structure. Taking advantage of these characteristics allows for efficient use of already implemented functionalities or excluding unnecessary ones.
+
+
+## 7. Checking Code Behind (GitHub Open Source)
+
+After a detailed look at the `PART_` control naming rule and its impact, it's time to explore how these controls are utilized in actual classes.
+
+The Code behind (class) area cannot be further examined through extraction. Therefore, it's necessary to review the Official source code through the WPF repository. For a more detailed examination, watching tutorial videos is recommended.
+
+In the actual source code, the names of each `PART_` control are agreed upon as strings like below:
+
+```csharp
+private const string TrackName = "PART_Track";
+private const string SelectionRangeElementName = "PART_SelectionRange";
+```
+
+> The names are defined fixedly, emphasizing the importance of adhering to this naming rule.
+
+##### WPF: OnApplyTemplate
+Let's examine the part where Track and SelectionRange are retrieved from the (ControlTemplate) template.
+
+```csharp
+public override void OnApplyTemplate()
+{
+    base.OnApplyTemplate();
+
+    SelectionRangeElement = GetTemplateChild(SelectionRangeElementName) as FrameworkElement;
+    Track = GetTemplateChild(TrackName) as Track;
+
+    if (_autoToolTip != null)
+    {
+        _autoToolTip.PlacementTarget = Track != null ? Track.Thumb : null;
+    }
+}
+```
+
+> The (Override) OnApplyTemplate method is called after the class and style are connected, making it the optimal time to use GetTemplateChild.
+
+Upon reviewing the original source code, they are defined as FrameworkElement and Track, respectively.
+
+ - [x] PART_SelectionRange: SelectionRangeElement (FrameworkElement)
+ - [x]  PART_Track: TrackName (Track)
+
+It's noteworthy that while Track is the same type as in XAML, SelectionRange is defined as a FrameworkElement, different from the original Rectangle. This implies that the Range area can use any control, not just a Rectangle, indicating the type definition is intentionally flexible.
+
+Therefore, it's reasonable to assume that (defined as a FrameworkElement type) SelectionRangeElement will handle only the basic functionalities available to this type.
+
+Next, let's look at how the SelectionRangeElement is managed.
