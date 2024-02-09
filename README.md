@@ -396,3 +396,120 @@ It's noteworthy that while Track is the same type as in XAML, SelectionRange is 
 Therefore, it's reasonable to assume that (defined as a FrameworkElement type) SelectionRangeElement will handle only the basic functionalities available to this type.
 
 Next, let's look at how the SelectionRangeElement is managed.
+
+
+```csharp
+private void UpdateSelectionRangeElementPositionAndSize()
+{
+    Size trackSize = new Size(0d, 0d);
+    Size thumbSize = new Size(0d, 0d);
+
+    if (Track == null || DoubleUtil.LessThan(SelectionEnd,SelectionStart))
+    {
+        return;
+    }
+
+    trackSize = Track.RenderSize;
+    thumbSize = (Track.Thumb != null) ? Track.Thumb.RenderSize : new Size(0d, 0d);
+
+    double range = Maximum - Minimum;
+    double valueToSize;
+
+    FrameworkElement rangeElement = this.SelectionRangeElement as FrameworkElement;
+
+    if (rangeElement == null)
+    {
+        return;
+    }
+
+    if (Orientation == Orientation.Horizontal)
+    {
+        // Calculate part size for HorizontalSlider
+        if (DoubleUtil.AreClose(range, 0d) || (DoubleUtil.AreClose(trackSize.Width, thumbSize.Width)))
+        {
+            valueToSize = 0d;
+        }
+        else
+        {
+            valueToSize = Math.Max(0.0, (trackSize.Width - thumbSize.Width) / range);
+        }
+
+        rangeElement.Width = ((SelectionEnd - SelectionStart) * valueToSize);
+        if (IsDirectionReversed)
+        {
+            Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
+        }
+        else
+        {
+            Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(SelectionStart - Minimum, 0) * valueToSize);
+        }
+    }
+    else
+    {
+        // Calculate part size for VerticalSlider
+        if (DoubleUtil.AreClose(range, 0d) || (DoubleUtil.AreClose(trackSize.Height, thumbSize.Height)))
+        {
+            valueToSize = 0d;
+        }
+        else
+        {
+            valueToSize = Math.Max(0.0, (trackSize.Height - thumbSize.Height) / range);
+        }
+
+        rangeElement.Height = ((SelectionEnd - SelectionStart) * valueToSize);
+        if (IsDirectionReversed)
+        {
+            Canvas.SetTop(rangeElement, (thumbSize.Height * 0.5) + Math.Max(SelectionStart - Minimum, 0) * valueToSize);
+        }
+        else
+        {
+            Canvas.SetTop(rangeElement, (thumbSize.Height * 0.5) + Math.Max(Maximum - SelectionEnd,0) * valueToSize);
+        }
+    }
+}
+```
+
+> The logic for branching Orientation (Horizontal/Vertical) is essentially the same, so we only need to examine it based on Horizontal.
+
+The (UpdateSelectionRangeElementPositionAndSize) method determines the size and position of the SelectionRange. Although the amount of source code might seem daunting, considering the duplicated source code for branching Orientation, it's easy to see that the handling of the SelectionRange is done succinctly.
+
+This way, by extracting (CustomControl) controls and examining how `PART_` controls are internally processed, it's possible to reverse-engineer and analyze them.
+
+## 8. OnApplyTemplate in Cross-Platform
+
+Cross-platforms, which retain many aspects of WPF's design, follow a similar flow. Let's take a look at how OnApplyTemplate is utilized in other platforms, based on our analysis.
+
+List of platforms sharing the OnApplyTemplate design:
+
+- [x] **AvaloniaUI**
+- [x] **Uno Platform**
+- [x] **OpenSilver**
+- [x] **MAUI**
+- [x] **Xamarin**
+- [ ] UWP
+- [ ] WinUI 3
+- [ ] Silverlight
+
+Among these, let's examine the actual source code for AvaloniaUI, Uno Platform, OpenSilver, MAUI, and Xamarin, which are checked.
+
+> Note that except for Silverlight, all are managed through GitHub's official Dotnet or Xamarin Microsoft Organization, making it easy to find the repositories on GitHub.
+
+##### AvaloniaUI: OnApplyTemplate
+
+Below is a part of the Slider control's OnApplyTemplate in AvaloniaUI:
+
+```csharp
+protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+{
+    ...
+    base.OnApplyTemplate(e);
+    _decreaseButton = e.NameScope.Find<Button>("PART_DecreaseButton");
+    _track = e.NameScope.Find<Track>("PART_Track");
+    _increaseButton = e.NameScope.Find<Button>("PART_IncreaseButton");
+    ...
+}
+```
+
+> AvaloniaUI, being open-source like WPF, allows for a detailed examination of all source code. It's also very similar to WPF in approach.
+
+Through the naming rule, it's immediately clear that three PART_ controls operate as essential components within the XAML area. Shall we also take a look at Uno?
