@@ -26,6 +26,35 @@ WPF에서 Template을 포함하는 Button 그리고 ToggleButton 등과 같은 �
 
 
 
+## Contents
+
+1. WPF Tutorial Series
+2. Specification
+3. 애플리케이션 프로젝트 생성
+4. Slider 주요 기능 분석
+5. 원본 스타일 추출 과정
+6. 추출된 소스코드 분석
+7. Code behind 확인 (GitHub 오픈소스)
+8. 크로스플랫폼에서의 OnApplyTemplate
+9. Slider 분석을 마치며
+10. Riot 스타일의 Slider (CustomControl) 컨트롤 만들기
+11. 프로젝트 생성 및 시작 준비
+12. TextBlock (Hi Slider)
+13. 참조 추가 및 실행 테스트
+14. Riot Slider 크기 설정
+15. PART_Track
+16. 슬라이더 바 추가
+17. 슬라이더 바와 Track 간의 오차 간격 맞추기
+18. PART_SelectionRange
+
+19. Riot 스타일의 디자인 요소 추가
+20. Riot 스타일의 Thumb 구현하기
+21. Thumb 리소스 선언
+22. RiotSlider 템플릿 전체 완성 (마무리)
+23. 마지막 남기는 말
+
+
+
 ## 1. WPF Tutorial Series
 
 > 현재까지 4개의  튜토리얼  (Vicky) 시리즈가 YouTube와 BiliBili를 통해 공개되었습니다. 이 튜토리얼 영상들은 영어와 중국어로도 제공되며, 유튜브에서는 한글 자막과 함께 지원됩니다. 잘 다듬어진 소스코드와 상세하고 전문적인 설명을 통해 WPF의 깊이를 더욱 끌어올릴 수 있는 기회가 되길 바랍니다.
@@ -55,7 +84,7 @@ WPF플랫폼에 익숙치 않은 경우, 환경이 혼란스러울 수도 있습
 
 
 
-### 3. 애플리케이션 프로젝트 생성
+## 3. 애플리케이션 프로젝트 생성
 
 이 모든 시작을 위해 WPF Application 프로젝트를 생성이 먼저 필요합니다.
 
@@ -67,7 +96,7 @@ WPF플랫폼에 익숙치 않은 경우, 환경이 혼란스러울 수도 있습
 
 
 
-### 4. Slider 주요 기능 분석
+## 4. Slider 주요 기능 분석
 
 WPF Slider 컨트롤은 Button과 같은 단순 컨트롤과는 달리 아주 다양한 속성들이 존재합니다. 특히 이 속성들을 컨트롤의 기능적인 중요한 역할을 담당하기 때문에 관심 있게 살펴볼 필요가 있으며, 그 중에서도 특별하게 동작하는 주요 속성들은 다음과 같습니다.
 
@@ -156,7 +185,8 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 
 
-### 5. 원본 스타일 추출 과정
+
+## 5. 원본 스타일 추출 과정
 
 앞서 언급한 것처럼, WPF는 GitHub 레포지토리를 통해 오픈소스로 관리되기 때문에 모든 컨트롤의 소스코드를 살펴볼 수 있습니다. 하지만 레포지터리에는 솔루션을 비롯해 모든 프로젝트 및 파일이 포함되어 있기 때문에, 특정 컨트롤 부분의 내용만 추출하는 것은 불가능에 가까울 정도로 어려운 작업입니다. 
 
@@ -213,7 +243,7 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 
 
-### 6. 추출된 소스코드 분석
+## 6. 추출된 소스코드 분석
 
 튜토리얼 영상에서처럼 Slider 컨트롤의 스타일이 성공적으로 추출되었습니다. App.xaml 파일 안에 관련 리소스들을 확인해보고, 중요하게 눈여겨볼 요소들을 하나씩 확인해봅시다.
 
@@ -416,7 +446,7 @@ _Slider에서는 두 개의 `PART_` 컨트롤이 존재합니다._
 
 
 
-### 7. Code behind 확인 (GitHub 오픈소스)
+## 7. Code behind 확인 (GitHub 오픈소스)
 
 앞서 `PART_` 컨트롤의 네이밍 규칙과 영향에 대해 자세하게 살펴봤으니, 이번에는 실제 클래스에서 이 컨트롤이 어떻게 사용되는지를 찾아볼 차례입니다.
 
@@ -554,7 +584,7 @@ private void UpdateSelectionRangeElementPositionAndSize()
 
 
 
-### 8. 크로스플랫폼에서의 OnApplyTemplate
+## 8. 크로스플랫폼에서의 OnApplyTemplate
 
 WPF의 설계의 많은 부분을 고유하고 있는 크로스플랫폼들 역시 이와 같은 흐름을 그대로 유사하게 따르고 있습니다. 따라서 앞서 분석해본 OnApplyTemplate를 기준으로 다른 플랫폼에서도 한번 이를 살펴봅시다.
 
@@ -625,8 +655,6 @@ protected override void OnApplyTemplate()
 
 다만 Uno는 의외로 `PART_` 네이밍 규칙을 따르지 않고 있습니다. 아마도 처음부터 규칙을 사용하지 않는 것을 규칙으로 정한 것 같습니다.
 
-
-
 MAUI와 OpenSilver 그리고 Xamarin에서도 이러한 소스코드를 찾아볼 수 있습니다.
 
 
@@ -681,7 +709,7 @@ public override void OnApplyTemplate()
 
 
 
-### 9. Slider 분석을 마치며
+## 9. Slider 분석을 마치며
 
 WPF Slider 컨트롤을 잘 살펴보았습니다. 이를 통해 우리는 WPF의 (CustomControl) 컨트롤이 매우 정교하게 잘 설계되어 있다는 것을 확인했습니다. 또한 이러한 규칙들은 다른 컨트롤에도 동일하게 응용되며, 또 새로운 컨트롤을 설계하는데에 있어서도 중요한 기반으로 쓰이게 될 것입니다.
 
@@ -695,7 +723,7 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 
 
-### 10. Riot 스타일의 Slider (CustomControl) 컨트롤 만들기
+## 10. Riot 스타일의 Slider (CustomControl) 컨트롤 만들기
 
 지금부터는 Slider 분석을 토대로 컨트롤의 특성을 살려 최소한의 설계를 통해 이를 구현합니다. 그 과정 속에서 `PART_` 부분을 활용하여 어떻나 코드도 사용하지 않고 컨트롤을 완성하는 것이 이 프로젝트의 핵심입니다. 
 
@@ -720,7 +748,7 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
   
 
-### 11. 프로젝트 생성 및 시작 준비
+## 11. 프로젝트 생성 및 시작 준비
 
 앞서 생성한 DemoApp (WPF Application) 애플리케이션 프로젝트에 이어서, 이번에는 CustomControl 라이브러리 프로젝트를 생성할 차례입니다. 만약 DemoApp 프로젝트에서 계속해서 진행하길 원한다면 이번 프로젝트 생성과정은 생략해도 됩니다.
 
@@ -767,7 +795,17 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 
 
-CustomControl 클래스 타입으로 파일을 생성할 경우에만 DefaultStyleKey 관련 구문이 static 생성자와 함께 포함됩니다. 만약 생성과정에서 타입을 잘못 선택할 경우 CustomControl 관련 코드 구문이 누락되기 때문에 이를 직접 입력해야하는 번거로움이 생기므로 과정을 주의깊게 확인하는 것이 중요합니다.
+CustomControl 클래스 타입으로 파일을 생성할 경우에만 DefaultStyleKeyProperty 관련 구문이 static 생성자와 함께 포함됩니다. 만약 생성과정에서 타입을 잘못 선택할 경우 CustomControl 관련 코드 구문이 누락되기 때문에 이를 직접 입력해야하는 번거로움이 생기므로 과정을 주의깊게 확인하는 것이 중요합니다.
+
+```csharp
+public class RiotSlider :Slider
+{
+    static RiotSlider()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(RiotSlider), new FrameworkPropertyMetadata(typeof(RiotSlider)));
+    }
+}
+```
 
 
 
@@ -786,7 +824,7 @@ CustomControl 클래스 타입으로 파일을 생성하지 않을 경우, 마�
 
 
 
-### 12. TextBlock (Hi Slider)
+## 12. TextBlock (Hi Slider)
 
 다음은 Slider 컨트롤이 CustomControl 형식으로 제대로 구성되었는지 확인하기 위한 테스트 단계입니다.
 
@@ -818,7 +856,7 @@ CustomControl 클래스 타입으로 파일을 생성하지 않을 경우, 마�
 
 
 
-### 13. 참조 추가 및 실행 테스트
+## 13. 참조 추가 및 실행 테스트
 
 테스트를 위한 TextBlock를 준비를 마쳤으니, 이제 DemoApp 애플리케이션을 실행하여 RiotSlider 컨트롤이 제대로 로드되는지를 확인해볼 차례입니다.
 
@@ -873,7 +911,7 @@ CustomControl 방식은 UserControl 방식보다 복잡하기 때문이 지금�
 
 
 
-### 13. Riot Slider 크기 설정
+## 14. Riot Slider 크기 설정
 
 다음은 컨트롤의 크기를 설정할 차례입니다. 
 
@@ -925,7 +963,7 @@ WPF는 꽤나 강력하고 유연한 (Responsive) 반응형 레이아웃을 사�
 
 
 
-### 14. PART_Track
+## 15. PART_Track
 
 Track은 Thumb를 포함한 Slider의 핵심 컨트롤 요소입니다. 또한 `PART_Track` 선언을 통해 Slider 컨트롤이 이 기능을 모두 도맡아 처리해주는 것을 분석을 통해 확인할 수 있었습니다. 따라서 이 필수 요소를 적재적소에 잘 포함시키는 것이 이번 구현에서 가장 핵심적이고 중요한 순간이 될 것입니다.
 
@@ -987,7 +1025,7 @@ Track은 Thumb를 포함한 Slider의 핵심 컨트롤 요소입니다. 또한 `
                             <Thumb>
                                 <Thumb.Template>
                                     <ControlTemplate>
-                                        <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                                        <Ellipse Width="50" Height="50" Fill="#000000"/>
                                     </ControlTemplate>
                                 </Thumb.Template>
                             </Thumb>
@@ -1025,18 +1063,103 @@ Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기�
 
 
 
-### 15. 슬라이더 바 추가
+## 16. 슬라이더 바 추가
 
 다음은 슬라이더 바를 추가할 차례입니다. 이 작업은 기능과 관련이 없는 오직 디자인적인 요소만을 추가합니다. 따라서 생략해도 기능에는 지장이 없지만, 다음 순서인 SelectionRange 단계와 디자인적 요소를 결합할 필요성이 있기 때문에 이번 작업 또한 주의 깊게 살펴 볼 필요성이 있습니다.
 
-- [x] Border 추가
+
+
+##### 레이아웃 변경:
+
+지금까지는 Border 안에 Track 요소만 포함되어 있었지만, 이번에는 슬라이더 바를 추가해야 하기 때문에 기존의 레이아웃을 변경하는 작업이 필요합니다. 또한 Track과 슬라이더 바는 서로 중첩되는 효과를 가져야하기 때문에 Grid를 사용하는 것이 외길입니다. 따라서 Track을 Grid로 감싸는 작업을 먼저 진행합니다.
+
+- [x] 레이아웃 변경: Grid
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+
+
+단순 중첩 효과가 필요하기 때문에, Grid의 RowDefenitions 또는 ColumnDefenitions를 사용할 필요도 없습니다.
+
+
+
+##### Track과 중첩되도록 슬라이더 바를 추가:
+
+슬라이더 바는 Track과 중첩되도록 배치하지만 어느 요소가 더 앞으로 (Front) 나와야 하는지를 논리적으로 먼저 생각할 필요가 잇습니다. Track의 Thumb 컨트롤이 슬라이더 바 영역을 덮도록 해야하기 때문에, 이를 고려하여 슬라이더 바를 Track보다 먼저 추가하여 선언하도록 하는 것이 중요합니다.
+
+- [x] 추가: (Border) 슬라이더 바
 
 - [x] Height: 2.5
 - [x] Background: #CCCCCC
 
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="#CCCCCC" Height="2.5"/>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
 
 
-Track의 길이를 시각적으로 표현해야 하기 때문에 Border와 같은 레이아웃을 사용하는 것이 효과적입니다. 특히 Border의 경우에는 CornerRadius 특성을 통해 모서리 부분의 라운딩 처리가 가능하기 때문에 다른 컨트롤에 비해 좀 더 풍부한 디자인을 표현할 수 있다는 장점을 가질 수 있습니다.
+
+또한 Track의 길이를 시각적으로 표현해야 하기 때문에 Border와 같은 레이아웃을 사용하는 것이 효과적입니다. 특히 Border의 경우에는 CornerRadius 특성을 통해 모서리 부분의 라운딩 처리가 가능하기 때문에 다른 컨트롤에 비해 좀 더 풍부한 디자인을 표현할 수 있다는 장점을 가질 수 있습니다.
 
 
 
@@ -1055,7 +1178,7 @@ Track의 길이를 시각적으로 표현해야 하기 때문에 Border와 같�
 
 
 
-### 16. 슬라이더 바와 Track 간의 오차 간격 맞추기
+## 17. 슬라이더 바와 Track 간의 오차 간격 맞추기
 
 슬라이더 바의 디자인과 위치가 그럴 듯 하게 배치된 것 같지만, 사실 Track의 이동 범위는 처음과 끝에 각각 Thumb의 반지름 만큼의 영역을 제한하고 있습니다. 실제로 WPF 원본 소스코드를 살펴보면 아래와 같은 코드를 발견할 수 있습니다.
 
@@ -1077,6 +1200,10 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 
 - [x] Ellipse Fill: #55000000
 
+```xaml
+<Ellipse Width="50" Height="50" Fill="#55000000"/>
+```
+
 > WPF에서 요소의 투명도를 지정할 때 객체 자체의 투명도인 Opacity를 사용하는 방법도 일반적이지만, 색상의 알파 값을 이용한다면 그 특정 색상만 투명화를 적용시킬 수 있기 때문에 훨씬 더 유용하게 사용될 수 있습니다. WPF의 꿀팁 중 하나이니 유용하게 사용해보세요.
 
 
@@ -1086,50 +1213,6 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 현재 Ellipse의 Width 너비가 50이기 때문에 좌/우 각각 25만큼 씩의 Margin을 적용합니다.
 
 - [x] Margin="25 0 25 0"
-
-
-
-##### 결과 확인:
-
-- [x] Thumb 반지름 만큼의 Margin 여백확인
-
-
-
-<사진>
-
-
-
-결과처럼 Track의 최대 이동범위와 슬라이더 바의 디자인상 크기가 정확하게 일치한 것을 확인할 수 있습니다. 
-
-
-
-### 17. PART_SelectionRange
-
-- [x] Border 추가: Height 2.5 Background: #000000
-
-
-
-##### Range 범위 지정: SelectionStart/SelectionEnd 
-
-- SelectionStart 지정
-- SelectionEnd 지정
-
-
-
-##### IsSelectionRangeEnabled 활성화
-
-- [x] IsSelectionRangeEnabled = true (무용지물)
-
-- [x] Trigger 및 기본을 Collapsed로...
-
-
-
-### 17. PART_ 컨트롤 기능 동작 확인
-
-- [x] PART_Track
-- [x] PART_SelectionRange
-
-
 
 ```xaml
 <Style TargetType="{x:Type local:RiotSlider}">
@@ -1146,11 +1229,6 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
                         BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid>
                         <Border Background="#CCCCCC" Height="2.5" Margin="25 0 25 0"/>
-                        <Border x:Name="PART_SelectionRange" 
-                                Background="#000000" 
-                                Height="2.5"
-                                HorizontalAlignment="Left"
-                                Margin="25 0 25 0"/>
                         <Track x:Name="PART_Track">
                             <Track.Thumb>
                                 <Thumb>
@@ -1172,97 +1250,425 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 
 
 
-### 18. 레이아웃 변경
+##### 결과 확인:
 
-- 핵심은 기존 바를 없애고 열 2개(Auto, *)의 Grid 만든다음 각각 열에 배치
-- Margin 25 0 25 0 추가
+- [x] Thumb 반지름 만큼의 Margin 여백 확인
+
+
+
+<사진>
+
+
+
+결과처럼 Track의 최대 이동범위와 슬라이더 바의 디자인상 크기가 정확하게 일치한 것을 확인할 수 있습니다.
+
+추가적으로 이번 Sync 작업을 동적으로 처리하는 아이디어에 대해 고민을 해보는 것도 좋습니다. 당장 떠오르는 방법 중에서는 이 슬라이더 바 컨트롤도 `PART_`로 지정한 다음 CodeBehind 내부에서 처리하는 것도 좋습니다. 그 밖에도 다양한 방법이 있으니 한번 생각해보는 시간을 가져보는 것을 기대합니다.
+
+
+
+## 18. PART_SelectionRange
+
+SelectionRange는 앞서 Slider 분석을 통해 특정 Range 범위를 지정하는 역할을 하는 요소입니다. 
+
+이 컨트롤 또한 Track과 마찬가지로 `PART_` 요소이며 Slider 컨트롤 내부에서 기능을 모두 처리하기 때문에 약속된 이름으로 잘 배치하기만 하면 됩니다. 그리고 디자인은 슬라이더 바와 동일한 높이의 크기로 지정하는 것이 자연스럽기 때문에 앞서 추가했던 슬라이더 바와 거의 동일한 느낌으로 요소를 추가하면 됩니다.
+
+
+
+##### SelectionRange Border 영역 추가:
+
+- [x] Name: `PART_SelectionRange`
+- [x] Heigh:t 2.5 
+- [x] Background: #000000
+- [x] Margin: 25 0 25 0
+
+```xaml
+<Border x:Name="PART_SelectionRange" 
+        Background="#000000" 
+        Height="2.5"
+        Margin="25 0 25 0"/>
 ```
-<Grid>
-    <Grid Margin="25 0 25 0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" x:Name="PART_SelectionRange" Background="#000000" Height="2.5"/>
-        <Border Grid.Column="1" Background="#CCCCCC" Height="2.5"/>
-    </Grid>
-    <Track x:Name="PART_Track">
-        <Track.Thumb>
-            <Thumb>
-                <Thumb.Template>
-                    <ControlTemplate>
-                        <Ellipse Width="50" Height="50" Fill="#55000000"/>
-                    </ControlTemplate>
-                </Thumb.Template>
-            </Thumb>
-        </Track.Thumb>
-    </Track>
-</Grid>
+
+
+
+##### Range 범위 지정:
+
+SelectionEnd의 경우 범위를 RelativeSource Binding을 통해 Value 값과 동기화 하도록 합니다.
+
+- [x] SelectionStart: 0
+- [x] SelectionEnd: {Binding RelativeSource {RelativeSource Self}, Path=Value}
+
+```xaml
+<Setter Property="SelectionStart" Value="0"/>
+<Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
 ```
 
 
 
-### 19. Thumb 스타일 관리
+SelectionEnd의 값을 Value 값과 동기화함으로써 Range 범위를 동적으로 표현할 수 있습니다. 실제로 리그오브레전드 클라이언트 애플리케이션의 Slider 컨트롤도 이와 동일한 형태로 구현되어 있습니다.
 
 
 
-### 25. 컬러 정의
+##### IsSelectionRangeEnabled 활성화 처리 작업:
+
+Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 필요는 없을지도 모릅니다. 하지만 트리거를 통해 간단하게 처리가 가능한 부분이므로 학습 차원에서 진행해보도록 합시다.
+
+> 튜토리얼 영상에서는 이 부분을 다루고 있지 않습니다.
 
 
 
-### 26. 트리거 적용
+- [x] IsSelectionRangeEnabled: True
 
-
-
-### 27. 최종 소스코드 확인
-
+```xaml
+<Setter Property="IsSelectionRangeEnabled" Value="True"/>
 ```
+
+> IsSelectionRangeEnabled 속성의 기본 값을 True로 지정합니다.
+
+
+
+- [x] PART_SelectionRange Visibility: (Default) Collapsed
+
+```xaml
+<Border x:Name="PART_SelectionRange" 
+        Background="#000000" 
+        Height="2.5"
+        Margin="25 0 25 0"
+        Visibility="Collapsed"/>
+```
+
+> SelectionRange의 기본 Visibility 값을 Collapsed로 지정합니다.
+
+
+
+- [x] 트리거: PART_SelectionRange.Visibility=Visible
+
+```xaml
+<Trigger Property="IsSelectionRangeEnabled " Value="True">
+    <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
+</Trigger>
+```
+
+>SelectionRange의 기본 보이기 값을 Collapsed로 지정하되, IsSelectionRangeEnabled 속성의 값이 True일 때 Visibility 값을 Visible로 변경하도록 트리거를 설정합니다. 이를 반대로 적용할 수 도 있겠지만 트리거에서 Boolean 속성의 True 값을 체크하는 것이 좀 더 일연스러운 일반적인 코드 규칙입니다.
+
+
+
+##### 소스코드 및 실행결과 확인:
+
+- [x] Setter 적용
+- [x] SelectionRange (Default) Collapsed
+- [x] 트리거 적용 IsSelectionRangeEnabled
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="#CCCCCC" Height="2.5" Margin="25 0 25 0"/>
+                        <Border x:Name="PART_SelectionRange" 
+                                Background="#000000" 
+                                Height="2.5"
+                                Margin="25 0 25 0"
+                                Visibility="Collapsed"/>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+                <ControlTemplate.Rigger>
+					<Trigger Property="IsSelectionRangeEnabled" Value="true">
+                        <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
+                    </Trigger>
+                </ControlTemplate.Rigger>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+
+
+<사진>
+
+
+
+이제 Slider를 구성하는 기능상의 모든 요소들을 다 추가하였습니다. 그리고 다시 한 번 `PART_` 컨트롤 요소들의 기능을 점검하는 것으로 이번 순서를 마무리하고 다음 단계로 넘어가보도록 하겠습니다.
+
+
+
+##### PART_ 컨트롤 기능 동작을 다시 한 번 확인하기:
+
+- [x] PART_Track
+- [x] PART_SelectionRange
+
+
+
+### 19. Riot 스타일의 디자인 요소 추가
+
+다음은 Riot Slider에 필요한 디자인 요소들을 추가할 차례입니다.
+
+
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/c060395c-03f8-4abf-a630-bf17a2587106" style="width: 600px; float: left"/>
+
+
+
+##### Geometry 디자인 리소스 추가:
+
+- [x] Geometry: ThumbData
+
+```xaml
+<Geometry x:Key="ThumbData">
+    M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L15.29 7.29L12 10.59L8.71 7.29L12 4M7.29 8.71L10.59 12L7.29 15.29L4 12L7.29 8.71M16.71 8.71L20 12L16.71 15.29L13.41 12L16.71 8.71M12 13.41L15.29 16.71L12 20L8.71 16.71L12 13.41Z
+</Geometry>
+```
+
+
+
+Thumb 아이콘을 이미지가 파일이 아닌 Geometry Path 요소를 사용하는 이유에 대해서는 이전 컨퍼런스와 영상 등을 통해 여러 번 이야기 했던것 처럼 색상 트리거를 통한 색상 변경이 자유롭고 Vector 기반의 높은 품질을 유지할 수 있는 장점이 있기 때문입니다. 
+
+> 이번과 같은 간단한 수준의 아이콘의 경우에는 비 디자이너의 경우에도 Visual Studio Blend 또는 Figma, Illustrator 등으로 충분히 만들 수도 있습니다. 어렵지 않으니 꼭 한번 도전해보세요.
+
+
+
+Vector 기반의 아이콘을 동료에게 요청할 때에는 SVG 타입으로, 그리고 단색의 디자인일 경우에는 결합된 형태로 요구하면 좋습니다. 그리고 이미 오픈소스 진영에서 충분히 많은 아이콘을 무료로 사용할 수도 있습니다. 대표적으로는 [Pictogrammers](https://pictogrammers.com) 오픈소스 팀이 있는데 약 8,000개 이상의 단색 디자인 아이콘을 제공하며 `.SVG` 와 `.PNG`, 심지어는 `.XAML`까지 제공합니다. 또한 재미있는 것은 GitHub를 통해 오픈소스로 관리되고 있기 때문에 주요 기여자를 확인하거나 오픈소스 참여도 가능합니다.
+
+
+
+그 다음은 주요 색상 리소스를 추가할 차례입니다. 
+
+
+
+##### LinearGradientBrush 디자인 리소스 추가:
+
+- [x] LinearGradientBrush: ThumbColor
+- [x] LinearGradientBrush: ThumbOver
+- [x] LinearGradientBrush: ThumbDrag
+- [x] SolidColorBrush: SliderColor
+- [x] LinearGradientBrush: RangeColor
+- [x] LinearGradientBrush: SliderOver
+- [x] LinearGradientBrush: SliderDrag
+
+```xaml
+<LinearGradientBrush x:Key="ThumbColor" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#B79248" Offset="0"/>
+    <GradientStop Color="#997530" Offset="0.5"/>
+    <GradientStop Color="#74592B" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="ThumbOver" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#EDE1C8" Offset="0"/>
+    <GradientStop Color="#DCC088" Offset="0.5"/>
+    <GradientStop Color="#CBA14A" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="ThumbDrag" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#473814" Offset="0"/>
+    <GradientStop Color="#57421B" Offset="0.5"/>
+    <GradientStop Color="#684E23" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="SliderColor" Color="#1E2328"/>
+
+<LinearGradientBrush x:Key="RangeColor" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#463714" Offset="0"/>
+    <GradientStop Color="#58471D" Offset="0.5"/>
+    <GradientStop Color="#695625" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="SliderOver" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#795B28" Offset="0"/>
+    <GradientStop Color="#C1963B" Offset="0.5"/>
+    <GradientStop Color="#C8AA6D" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="SliderDrag" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#685524" Offset="0"/>
+    <GradientStop Color="#55441B" Offset="0.5"/>
+    <GradientStop Color="#463714" Offset="1"/>
+</LinearGradientBrush>
+```
+
+> 색상과 같은 디자인 리소스의 x:Key 규칙은 보통 대문자 또는 카멜 표기법, 그리고 (.) 네임스페이스와 유사하게 하는 등의 방법이 있습니다. 개인적으로는 해가 바뀔 때마다 이 규칙에 대한 견해가 갈대처럼 변하고 있기 때문에 제 주관을 이야기하기가 망설여지지만 현재는 지금처럼 최대한 짧게 하는 것을 선호합니다. 흘려들어주세요.
+
+
+
+리그오브레전드 스타일의 디자인을 유심히 살펴보면 그라데이션을 적극 사용하고 있는 것을 쉽게 파악할 수 있습니다. 이 색상을 추출하는 방법은 Photoshop 또는 스포이드 색상 추출 기능이 포함된 애플리케이션을 이용하는 것입니다. 
+
+> 그라데이션으로 의심되는 색상은 눈대중으로 영역을 나누어 스포이드 기능을 통해 여러 번 색상을 추출해보세요. 자꾸 시도하다 보면 눈썰미도 덩달아 예리해집니다.
+
+
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/b7e9fae1-9f8f-4fab-baab-9cfa1c9e013f" style="width: 500px; float: left"/>
+
+
+
+## 20. Riot 스타일의 Thumb 구현하기
+
+이제 준비된 Geometry와 디자인 요소를 사용하여 본격적으로 제대로 된 리그오브레전드 스타일의 Thumb 컨트롤을 만들어볼 차례입니다. 
+
+시작하기 전에 앞서 Thumb 템플릿을 정의할 때 임시적으로 Ellipse를 사용하여 구현하였는데 이를 먼저 폐기해야 합니다. 따라서 Ellipse를 포함한 Thumb가 정의된 부분을 모두 삭제하도록 하겠습니다.
+
+
+
+##### 기존 Thumb 폐기:
+
+- [x] Thumb 및 템플릿 모두 제거
+
+```xaml
+<Track x:Name="PART_Track">
+    <Track.Thumb>
+        <Thumb>
+            <Thumb.Template>
+                <ControlTemplate>
+                    <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                </ControlTemplate>
+            </Thumb.Template>
+        </Thumb>
+    </Track.Thumb>
+</Track>
+```
+
+> Track 안에 직접적으로 정의되어 있는 Thumb와 템플릿을 모두 제거하고 Track만 남겨둡니다.
+
+
+
+이제 Riot 스타일의 새로운 Thumb를 만들 차례입니다.
+
+방금 제거한 Thumb는 Track을 통해 직접 템플릿을 확장하여 임시로 정의했었지만 이번에는 StaticResource를 통해 리소스를 깔끔하게 정리하는 방식으로 이를 구현할 것입니다. 
+
+
+
+##### 새로운 Thumb 템플릿 정의:
+
+- [x] Riot 스타일의 Thumb 구현 및 리소스 세분화
+
+```xaml
+<Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
+    <Setter Property="Background" Value="#010A13"/>
+    <Setter Property="Width" Value="24"/>
+    <Setter Property="Height" Value="24"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Thumb}">
+                <Grid Background="{TemplateBinding Background}">
+                    <Path x:Name="path" Data="{StaticResource ThumbData}" Fill="{StaticResource ThumbColor}"/>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbOver}"/>
+                    </Trigger>
+                    <Trigger Property="IsDragging" Value="True">
+                        <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbDrag}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+> CustomControl 기반에서 XAML 리소스 관리는 의외로 단순합니다. Generic.xaml을 통해 이미 물리적으로 리소스가 나뉘어지기 때문에 계속해서 세부 요소들을 x:Key를 통해 더 세분화하여 관리하면 됩니다. 앞서 같은 이유로 Geometry와 LeanerGradientBrush 또한 분리 시킨 것입니다. 이 리소스는 RiotSlider 컨트롤의 스타일과 같은 `.XAML` 파일안에 포함되어 있기만 하면 됩니다.
+
+
+
+Thumb는 앞서 언급했던 것처럼 Control로부터 상속된 컨트롤이므로 템플릿을 통한 (ControlTemplate) 컨트롤 설계가 가능합니다. 따라서 세부적인 트리거까지 상세하게 구현된 또 하나의 컨트롤을 만들 수 있습니다. 또한 더욱 더 디테일한 컨트롤을 만들고자 할 경우 Thumb를 CustomControl 방식으로 더 세분화할 수도 있습니다. 이러한 경우는 WPF 기본 컨트롤에서도 정말 흔히 볼 수 있습니다.
+
+잡지식을 조금 더 탐구해 봅시다. 예로 ToolBarOverflowPanel와 같은 들어도 본적도 없는 이러한 컨트롤들이 찾아보면 상당히 많이 있습니다. 이는 모두 CustomControl 상에서 더 세분화된 컨트롤이 필요할 경우 더 심화된 컨트롤로 만들어 둔 것인데, 이러한 컨트롤들은 대부분 Primitives 네임스페이스로 묶여 있습니다.
+
+따라서 이 네임스페이스로 되어 있는 컨트롤들은 어딘가 다른 (CustomControl) 컨트롤 안에 포함되는 컨트롤이라 생각하면 이해가 쉽습니다. 그럼 Primitives의 대표 주자인 ToggleButton을 한번 예를 들어 보겠습니다. 이 컨트롤은 CheckBox/RadioButton의 부모 역할도 하지만 ComboBox와 같은 컨트롤의 템플릿 안에 포함되어 항목을 스위칭 하는 역할로 사용되기도 합니다.
+
+> 재미있죠? 이러한 아키텍쳐적인 개념들은 XAML을 공유하는 모든 (크로스) 플랫폼들에게도 적용이 됩니다. 따라서 이러한 개념들을 잘 응용할 수 있다면  AvaloniaUI Uno MAUI 등의 환경에서도 다양하게 도움이 될 것입니다.
+
+> 물론 Primitives 네임스페이스로 묶인 컨트롤 모두 DefaultStyleKey를 통해 지정된 CustomControl 방식의 컨트롤임을 의미하는 것은 아닙니다. 이 중에서는 단순 래핑된 클래스들도 많이 존재합니다.
+
+
+
+## 21. Thumb 리소스 선언
+
+마지막으로 Thumb를 리소스 형태로 선언을 하여 이를 Track에서 StaticResource로 선언 가능하도록 준비합니다.
+
+##### Thumb 리소스 추가:
+
+- [x] 앞서 템플릿이 포함된 Thumb 스타일을 Thumb 리소스와 함께 연결해서 정의
+
+```xaml
+<Thumb x:Key="SliderThumb" Style="{StaticResource ThumbStyle}"/>
+```
+
+>  이 부분은 튜토리얼 영상에서도 자세하게 다루고 있으니 문법적으로 어색함이 느껴진다면 한번 살펴보는 것을 권합니다.
+
+
+
+이제 리소스화 된 Thumb를 Track에서 사용하기만 하면 됩니다.
+
+
+
+##### Track에서 Thumb를 간결하게 정의:
+
+- [x] 기존 Thumb 대신 한 줄로 StaticResource 연결
+
+```xaml
+<Track Thumb="{StaticResource SliderThumb}"/>
+```
+
+> Thumb 자체를 Resource 형태로 사용하게 되면 Track에서 Thumb를 적용할 때 이처럼 소스코드의 양을 많이 줄일 수 있습니다. 또한 전체적인 리소스를 한눈에 파악하는데 도움이 되기 때문에 이와 같이 리소스를 관리하는 것은 소스코드 품질을 지속적으로 유지하기 위한 중요한 방법 중 하나이기 때문에 이러한 방식을 능숙하게 다룰 수 있도록 유심히 살펴보세요.
+
+
+
+### 22. RiotSlider 템플릿 전체 완성 (마무리)
+
+이제 RiotSlider 컨트롤의 템플릿 구현을 마무리합니다. 추가적으로 Jamesnet.WPF 라이브러리도 포함되어 JamesGrid를 사용하고 있는데, 일반 Grid로 대체해도 무방합니다.
+
+
+
+##### (CustomControl) RiotSlider:
+
+- [x] Generic.xaml 전체 소스코드 확인
+
+```xaml
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:james="https://jamesnet.dev/xaml/presentation"
-    xmlns:local="clr-namespace:RiotSlider">
+    xmlns:local="clr-namespace:SliderControl">
 
-    <Geometry x:Key="ThumbPath">
+    <Geometry x:Key="ThumbData">
         M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L15.29 7.29L12 10.59L8.71 7.29L12 4M7.29 8.71L10.59 12L7.29 15.29L4 12L7.29 8.71M16.71 8.71L20 12L16.71 15.29L13.41 12L16.71 8.71M12 13.41L15.29 16.71L12 20L8.71 16.71L12 13.41Z
     </Geometry>
 
-    <LinearGradientBrush x:Key="ThumbColor" StartPoint="0.5, 0" EndPoint="0.5, 1">
+    <LinearGradientBrush x:Key="ThumbColor" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#B79248" Offset="0"/>
         <GradientStop Color="#997530" Offset="0.5"/>
         <GradientStop Color="#74592B" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="ThumbOver" StartPoint="0.5, 0" EndPoint="0.5, 1">
+    <LinearGradientBrush x:Key="ThumbOver" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#EDE1C8" Offset="0"/>
         <GradientStop Color="#DCC088" Offset="0.5"/>
         <GradientStop Color="#CBA14A" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="ThumbDrag" StartPoint="0.5, 0" EndPoint="0.5, 1">
+    <LinearGradientBrush x:Key="ThumbDrag" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#473814" Offset="0"/>
         <GradientStop Color="#57421B" Offset="0.5"/>
         <GradientStop Color="#684E23" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="SliderOver" StartPoint="0, 0.5" EndPoint="1, 0.5">
-        <GradientStop Color="#795B28" Offset="0"/>
-        <GradientStop Color="#C1963B" Offset="0.5"/>
-        <GradientStop Color="#C8AA6D" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="SliderDrag" StartPoint="0, 0.5" EndPoint="1, 0.5">
-        <GradientStop Color="#685524" Offset="0"/>
-        <GradientStop Color="#55441B" Offset="0.5"/>
-        <GradientStop Color="#463714" Offset="1"/>
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="SliderColor" Color="#1E2328"/>
-
-    <LinearGradientBrush x:Key="RangeColor" StartPoint="0, 0.5" EndPoint="1, 0.5">
-        <GradientStop Color="#463714" Offset="0"/>
-        <GradientStop Color="#58471D" Offset="0.5"/>
-        <GradientStop Color="#695625" Offset="1"/>
     </LinearGradientBrush>
 
     <Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
@@ -1273,14 +1679,14 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Path x:Name="path" Data="{StaticResource ThumbPath}" Fill="{StaticResource ThumbColor}"/>
+                        <Path x:Name="path" Data="{StaticResource ThumbData}" Fill="{StaticResource ThumbColor}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbOver}" />
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbOver}"/>
                         </Trigger>
-                        <Trigger Property="IsDragging" Value="true">
-                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbDrag}" />
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbDrag}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1290,32 +1696,47 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 
     <Thumb x:Key="SliderThumb" Style="{StaticResource ThumbStyle}"/>
 
+    <SolidColorBrush x:Key="SliderColor" Color="#1E2328"/>
+
+    <LinearGradientBrush x:Key="RangeColor" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#463714" Offset="0"/>
+        <GradientStop Color="#58471D" Offset="0.5"/>
+        <GradientStop Color="#695625" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="SliderOver" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#795B28" Offset="0"/>
+        <GradientStop Color="#C1963B" Offset="0.5"/>
+        <GradientStop Color="#C8AA6D" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SliderDrag" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#685524" Offset="0"/>
+        <GradientStop Color="#55441B" Offset="0.5"/>
+        <GradientStop Color="#463714" Offset="1"/>
+    </LinearGradientBrush>
+
     <Style TargetType="{x:Type local:RiotSlider}">
-        <Setter Property="IsMoveToPointEnabled" Value="True"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="SelectionStart" Value="0"/>
-        <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="Maximum" Value="100"/>
+        <Setter Property="SelectionStart" Value="0"/>
+        <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self},Path=Value}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RiotSlider}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <james:JamesGrid Rows="*" Columns="Auto, *" Margin="12 0 12 0" Height="2.5">
-                                <Border Grid.Column="0" x:Name="PART_SelectionRange" Background="{StaticResource RangeColor}"/>
-                                <Border Grid.Column="1" Background="{StaticResource SliderColor}"/>
-                            </james:JamesGrid>
-                            <Track x:Name="PART_Track" Thumb="{StaticResource SliderThumb}"/>
-                        </Grid>
-                    </Border>
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesGrid Rows="*" Columns="Auto,*" Height="2.5" Margin="12 0 12 0">
+                            <Border Background="{StaticResource RangeColor}" x:Name="PART_SelectionRange"/>
+                            <Border Background="{StaticResource SliderColor}"/>
+                        </james:JamesGrid>
+                        <Track x:Name="PART_Track" Thumb="{StaticResource SliderThumb}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsMouseOver}" Value="true">
+                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsMouseOver}" Value="True">
                             <Setter TargetName="PART_SelectionRange" Property="Background" Value="{StaticResource SliderOver}"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsDragging}" Value="true">
+                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsDragging}" Value="True">
                             <Setter TargetName="PART_SelectionRange" Property="Background" Value="{StaticResource SliderDrag}"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1325,3 +1746,44 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
     </Style>
 </ResourceDictionary>
 ```
+
+> 추가적으로 아래 트리거가 두개 더 추가되었고, RiotSlider 컨트롤의 (ControlTemplate) 템플릿 영역을 한눈에 파악할 수 있도록 모든 요소들을 리소스로 세분화 하여 관리하는 것이 이 프로젝트의 특징입니다.
+
+
+
+Slider 컨트롤을 (CustomControl) 기반으로 구현했기 때문에 이와 관련한 리소스들을 하나의 리소스 팩처럼 관리하기에도 용이해집니다.
+
+
+
+##### 최종 결과 확인:
+
+- [x] `PART_Track` 관련 기능 테스트
+- [x] `PART_SelectionRange` 관련 기능 테스트
+- [x] 디자인 요소 적용 확인 
+
+> 기능적인 부분은 이미 분석부터 구현까지 여러 단계를 거치면서 살펴봤지만 다시 한 번 `PART_` 컨트롤을 기준으로 기능 점검을 체크해보시기 바랍니다.
+
+
+
+<사진>
+
+
+
+이것으로 기본 Slider 컨트롤의 분석부터 리그오브레전드 스타일의 RiotSlider 컨트롤 구현까지 (CustomControl) 기반의 개발 과정 및 튜토리얼 영상 리뷰를 마칩니다. 
+
+> 영상과 다소 다른 부분이 있거나 소스코드 등이 잘못될 수 있습니다. 크게 문제가 있는 부분은 적극 말씀해주세요.
+
+
+
+## 23. 마지막 남기는 말
+
+가볍게 만들 수 있는 WPF Slider 컨트롤을 아키텍쳐적인 측면에서 깊이 있게 살펴보았습니다. 뜯어보면 별 것 아닌데 이처럼 할 이야기가 많다는 것은 그만큼 설계적인 측면에서 WPF를 통해 배울 수 있는 부분이 많다는 이야기로 해석할 수도 있을 것 같습니다. 튜토리얼 영상도 한번 살펴보시기 바랍니다. Vicky의 영상을 통한 해석도 재미있습니다.
+
+WPF는 오래된 플랫폼입니다. 따라서 긴 세월 만큼이나 다양한 개발 방법론과 프레임워크, 컴포넌트 오픈소스 라이브러리들이 계속해서 발전하고 또 변화하고 있습니다. 따라서 시간이 지남에 따라 주류의 평가와 해석은 계속해서 달라질 수 있습니다. 그렇기 때문에 지금까지 거쳐온 역사적인 히스토리들은 사실 다방면으로 모두 우리 기술의 밑거름이 될 수 있습니다. 이를 유연하게 판단하고 평가한다면 좀 더 풍부하고 양질의 레퍼런스를 찾아낼 수 있을 것입니다. 꼭 주류만이 정답이 아닐 수 있습니다.
+
+
+
+간만에 장문의 리뷰 아닌 리뷰를 만들게 되었는데 많은 분들에게 전해졌음 하는 마음으로 정성담아 작성했습니다. 
+
+모두들 행복한 설 되시길 바랍니다!! 
+감사합니다.
