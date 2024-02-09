@@ -142,3 +142,47 @@ Interestingly, applying these with the Value can produce a fascinating effect as
 Surprisingly, linking the Value to SelectionEnd through Binding allows for a dynamic change in the Selection (Range) as the value changes. Was this intended by the WPF developers? It's impressive, and the clean implementation method is quite satisfying.
 
 > This will play a crucial role in the implementation of the Riot-style Slider (CustomControl) discussed later in the article, so keep it in mind.
+
+## 5. Extracting the Original Style Process
+
+As mentioned earlier, since WPF is managed as open-source through the GitHub repository, it's possible to examine the source code of all controls. However, given that the repository contains solutions, all projects, and files, extracting content for a specific control part is a task close to impossible.
+
+Fortunately, Visual Studio provides a GUI feature for extracting the default style (Template) of a specific control. Thus, without the need to sift through open-source, you can easily and simply extract the relevant code.
+
+> It's okay to think of this similar to Identity scaffolding in Blazor. (Though the nature is slightly different, it helps in understanding)
+
+Moreover, extracting the original style through Visual Studio links you to an actual modifiable resource form, allowing for immediate customization of design and functionality. Therefore, since the original style and template extraction is possible not only for Slider but for all controls, this is a highly valuable element in WPF research/learning.
+
+> If you look at commercial components like Infragistics, Syncfusion, ArticPro, not all provide this extraction feature. Each company has its disclosure scope and policy, and most prefer to modularize via DataTemplate for customization rather than exposing the ControlTemplate. It's interesting to take a look at the components you are using.
+
+##### Extraction Method and Procedure: Visual Studio
+
+- [x] Extracting the default control (Slider) style (Edit a Copy...)
+- [x] Extract to the current file (This document)
+- [x] Extract to the App.xaml file (Application)
+- [x] Create a new ResourceDictionary file for extraction (Resource Dictionary)
+
+Note, the extraction process can only proceed in the design area of a Partial UserControl, by selecting the control and right-clicking to proceed. This step involves choosing the "specify style name/define copy location of the extracted style" option.
+
+> Try looking up the method in VScode or Rider, do they offer it?
+
+Let's take a closer look at the process.
+
+- [x] Style extraction command: Slider > Right click > Edit Template > Edit a Copy...
+
+<img width="365" alt="image" src="https://github.com/vickyqu115/riotslider/assets/52397976/0d7f2e38-f616-4260-a256-f3e4eb5c9f09" style="float:left">
+
+> If no extractable style is provided, this item will not be activated.
+
+- [x] Style Extraction Options Window: Create ControlTemplate Resource (Window)
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/d895d1fd-f709-4909-a968-3cd4692550ac" style="float: left; width: 500px"/>
+
+
+> Select Name (Key) and Define in options,
+
+Typically, specifying a Name is the right choice for testing and management perspectives. If you choose "Apply to all" without specifying a name, the style created based on the Define location will be applied globally. Therefore, understand this point well and proceed with the extraction carefully.
+
+In the video, the name is set, and the Define location is specified as Application. Thus, the extracted resource is included in the Resources area of the App.xaml file (if the file exists).
+
+Personally, when performing such extraction work, it's recommended to proceed in a test nature in a new project. Actually conducting this process in a live project may result in minor mistakes and problems, so it's a good choice also from the perspective of preventing such side effects.
