@@ -114,3 +114,31 @@ Let's also take a look at how the Horizontal/Vertical properties are applied:
 <img src="https://github.com/vickyqu115/riotslider/assets/52397976/bbcbeaa9-1763-4435-b92b-be2a71a5ee73" width="300" style="float:left"/>
 
 > Similarly, you will find quite a few controls that switch the (ControlTemplate) template itself in a similar manner (e.g., ScrollViewer).
+
+##### **Minimum, Maximum, and Value:**
+
+These are double type properties that represent the minimum range, maximum range, and value, respectively. Internally, the control's size and ratio calculate the position of the Range and Value automatically based on these values.
+
+Since all these properties are DependencyProperty, dynamic interactions through binding are possible. For example, in an MVVM structure, leveraging these three values allows for dynamic changes to the Range according to specific scenarios or enables interesting implementations through various applications.
+
+##### SelectionStart, SelectionEnd, and IsSelectionRangeEnabled:
+
+These two properties (SelectionStart/SelectionEnd) serve to set a specific area. In reality, this area doesn't include any special functionality; it's merely for designating a segment and visually highlighting it. IsSelectionRangeEnabled is a property that indicates whether this area is active, and depending on its activation status, the area's Visibility property value switches through a trigger (Visible/Collapsed).
+
+Upon examination, these features might seem merely for area marking, leading to questions about their necessity. However, given their versatile use across designs and fields, understanding and anticipating their necessity is possible. ~~Respecting style preferences from 20 years ago~~
+
+Interestingly, applying these with the Value can produce a fascinating effect as shown below:
+
+```xaml
+<Slider Orientation="Horizontal"
+        Minimum="0"
+        Maximum="100"
+        Value="30"
+        SelectionStart="0"
+        SelectionEnd="{Binding Value, RelativeSource={RelativeSource Self}}"
+        IsSelectionRangeEnabled="True"/>
+```
+
+Surprisingly, linking the Value to SelectionEnd through Binding allows for a dynamic change in the Selection (Range) as the value changes. Was this intended by the WPF developers? It's impressive, and the clean implementation method is quite satisfying.
+
+> This will play a crucial role in the implementation of the Riot-style Slider (CustomControl) discussed later in the article, so keep it in mind.
