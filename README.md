@@ -513,3 +513,69 @@ protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
 > AvaloniaUI, being open-source like WPF, allows for a detailed examination of all source code. It's also very similar to WPF in approach.
 
 Through the naming rule, it's immediately clear that three PART_ controls operate as essential components within the XAML area. Shall we also take a look at Uno?
+
+
+
+##### Uno Platform: OnApplyTemplate
+
+```csharp
+protected override void OnApplyTemplate()
+{
+	...	
+    base.OnApplyTemplate(e);
+	
+	// Get the parts
+    var spElementHorizontalTemplateAsDO = GetTemplateChild("HorizontalTemplate");
+    _tpElementHorizontalTemplate = spElementHorizontalTemplateAsDO as FrameworkElement;
+    var spElementTopTickBarAsDO = GetTemplateChild("TopTickBar");
+    ...
+}
+```
+> In Uno, it follows a similar approach to WPF.
+
+However, it is somewhat surprising that Uno does not adhere to the PART_ naming convention. It seems that they have made a rule not to use such conventions from the beginning.
+
+You can find similar source code in MAUI, OpenSilver, and Xamarin as well.
+
+##### MAUI: OnApplyTemplate
+
+```csharp
+protected override void OnApplyTemplate()
+{
+    base.OnApplyTemplate();
+    _thumb = (Thumb)GetTemplateChild("HorizontalThumb");
+    _originalThumbStyle = _thumb.Style;
+
+    UpdateThumbStyle();
+}
+```
+
+> Unlike WPF, which declares variable names following the track, MAUI prefixes them with an underscore. Comparing the naming conventions and development patterns across different platforms is one of the small joys in analyzing open-source projects.
+
+##### OpenSilver: OnApplyTemplate
+
+```csharp
+public override void OnApplyTemplate()
+{
+    base.OnApplyTemplate();
+
+    // Get the parts
+    ...
+    ElementVerticalThumb = GetTemplateChild(ElementVerticalThumbName) as Thumb;
+    ...
+}
+```
+> Uses a commenting style similar to Uno.
+
+##### Xamarin: OnApplyTemplate
+
+```csharp
+public override void OnApplyTemplate()
+{
+    base.OnApplyTemplate();
+    FormsContentControl = Template.FindName("PART_Multi_Content", this) 
+    	as FormsTransitioningContentControl;
+}
+```
+> Though there are slight differences, all share a design similar to WPF.
+
