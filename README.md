@@ -94,7 +94,7 @@ Let's take a closer look at a simplified part of the Slider to better understand
         </Trigger>
     </Style.Triggers>
 </Style>
-
+```
 You can see that the (ControlTemplate) template switches based on the Orientation property in the trigger. Thus, a closer look at the actual configuration of this control can easily illustrate the significant role of the Orientation property.
 
 > It's an interesting part. Could you have imagined or applied the concept of switching templates through Orientation before seeing the original source? Open source can inspire in such ways. And let's note that the optimal timing for switching templates is indeed through the "Style.Trigger".
