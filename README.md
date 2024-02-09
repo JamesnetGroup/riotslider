@@ -186,3 +186,85 @@ Typically, specifying a Name is the right choice for testing and management pers
 In the video, the name is set, and the Define location is specified as Application. Thus, the extracted resource is included in the Resources area of the App.xaml file (if the file exists).
 
 Personally, when performing such extraction work, it's recommended to proceed in a test nature in a new project. Actually conducting this process in a live project may result in minor mistakes and problems, so it's a good choice also from the perspective of preventing such side effects.
+
+## 6. Analysis of Extracted Source Code
+
+As demonstrated in the tutorial video, the Slider control style has been successfully extracted. Let's take a look at the related resources within the App.xaml file and examine the elements that are important to note one by one.
+
+##### Checking Orientation Branch:
+
+As briefly mentioned when explaining the Orientation property earlier, it's time to check the actual source code implemented.
+
+The style below is the original WPF default style containing the extracted SliderStyle1 template. (It works without errors upon immediate application.)
+
+```xaml
+<Style x:Key="SliderStyle1" TargetType="{x:Type Slider}">
+    <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource SliderThumb.Static.Foreground}"/>
+    <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+    <Style.Triggers>
+        <Trigger Property="Orientation" Value="Vertical">
+            <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+```
+From this, we can see that the default Template is set to the SliderHorizontal (ControlTemplate) template, and through a trigger, it switches to the SliderVertical (ControlTemplate) template when the Orientation property value is Vertical.
+
+> By modularizing the (ControlTemplate) template like this, you gain the advantage of being able to see the actual style at a glance, which is a management structure worth trying even in non-switching situations. I do it often. You can also get inspiration from these aspects.
+
+Thus, the Slider control's functionalities are essentially implemented within both the SliderHorizontal and SliderVertical (ControlTemplate) areas.
+
+Let's now check the default SliderHorizontal (ControlTemplate) template.
+
+##### Checking ControlTemplate:
+Let's examine each of the Horizontal/Vertical specific templates, which can be found continuously within the App.xaml file.
+
+ - [x] Check Horizontal specific template
+ - [x] Check Vertical specific template
+
+ControlTemplate: **SliderHorizontal**
+
+```xaml
+<ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
+    <Border ...>
+        ...
+    </Border>
+    <ControlTemplate.Triggers>
+        ...
+    </ControlTemplate.Triggers>
+</ControlTemplate>
+```
+
+ControlTemplate: **SliderVertical**
+
+```xaml
+<ControlTemplate x:Key="SliderVertical" TargetType="{x:Type Slider}">
+    <Border ...>
+		...
+    </Border>
+    <ControlTemplate.Triggers>
+		...
+    </ControlTemplate.Triggers>
+</ControlTemplate>
+```
+
+
+As seen, both the Horizontal/Vertical source codes are branched and implemented separately. Therefore, the implemented content is the same for both, differing only in design orientation.
+
+Let's verify this precisely. The common elements included are as follows:
+
+ - [ ] Name: TopTick
+ - [ ] Name: BottomTick
+ - [ ] Name: TrackBackground
+ - [ ] **Name: PART_SelectionRange**
+ - [ ] **Name: PART_Track**
+ - [ ] Name: Thumb
+ - [ ] Trigger: TickPlacement
+ - [ ] Trigger: IsSelectionRangeEnabled
+ - [ ] Trigger: IsKeyboardFocused
+
+
+We can see that the common elements are included in both ControlTemplates, confirming that both have the same composition. Now, let's focus on and examine only the SliderHorizontal part.
