@@ -1381,6 +1381,7 @@ Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 �
                                 Background="#000000" 
                                 Height="2.5"
                                 Margin="25 0 25 0"
+                                HorizontalAlignment="Left"
                                 Visibility="Collapsed"/>
                         <Track x:Name="PART_Track">
                             <Track.Thumb>
@@ -1407,8 +1408,9 @@ Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 �
 ```
 
 
+<img width="391" alt="11-10" src="https://github.com/vickyqu115/riotslider/assets/101777355/617d041b-b54f-4df9-aabb-4d63ac1d7815">
 
-<사진>
+
 
 
 
