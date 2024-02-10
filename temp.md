@@ -817,6 +817,7 @@ public class RiotSlider :Slider
 
 
 
+<img width="708" alt="11-4" src="https://github.com/vickyqu115/riotslider/assets/101777355/867bdc09-adf2-4852-9aa3-3c4828df6672">
 
 
 
@@ -897,8 +898,8 @@ CustomControl 클래스 타입으로 파일을 생성하지 않을 경우, 마�
 - [x] Riot Slider: "Hi Slider"
 
 
+<img width="395" alt="11-5" src="https://github.com/vickyqu115/riotslider/assets/101777355/145a7aa7-364d-41a2-a74a-dfe0b95a9e26">
 
-<사진>
 
 
 
