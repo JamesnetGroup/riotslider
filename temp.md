@@ -1174,7 +1174,8 @@ Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기�
 
 
 
-<사진>
+<img width="367" alt="11-8" src="https://github.com/vickyqu115/riotslider/assets/101777355/6e3bc204-c9ad-4bb4-ab7c-2c56c033d6b0">
+
 
 
 
