@@ -762,8 +762,8 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 - [x] 프로젝트 버전: 닷넷 8.0
 
 
+<img width="253" alt="11-1" src="https://github.com/vickyqu115/riotslider/assets/101777355/eb164539-2bd1-46b1-a658-d339cc39b865">
 
-<사진>
 
 
 
@@ -775,7 +775,8 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 
 
 
-<사진>
+<img width="243" alt="11-2" src="https://github.com/vickyqu115/riotslider/assets/101777355/ecd698ad-674e-440f-84b4-481caa5b8272">
+
 
 
 
@@ -790,8 +791,8 @@ WPF로 모든 개발을 하고 싶다는 꿈이 과거에는 상상으로만 그
 - [x] RiotSlider.cs (CustomControl) 클래스 생성
 
 
+<img width="253" alt="11-3" src="https://github.com/vickyqu115/riotslider/assets/101777355/0c52e698-2353-4e11-8253-0a801de9f119">
 
-<사진>
 
 
 
@@ -816,7 +817,7 @@ public class RiotSlider :Slider
 
 
 
-<사진>
+
 
 
 
