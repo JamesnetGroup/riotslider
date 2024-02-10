@@ -957,7 +957,8 @@ WPF는 꽤나 강력하고 유연한 (Responsive) 반응형 레이아웃을 사�
 
 
 
-<사진>
+<img width="591" alt="11-6" src="https://github.com/vickyqu115/riotslider/assets/101777355/6e84759d-cb7c-4582-a9d8-36f05ca2df1f">
+
 
 
 
@@ -1055,7 +1056,8 @@ Track은 Thumb를 포함한 Slider의 핵심 컨트롤 요소입니다. 또한 `
 
 
 
-<사진>
+<img width="390" alt="11-7" src="https://github.com/vickyqu115/riotslider/assets/101777355/9f13cde2-25a6-47c7-beaf-c54cc5910419">
+
 
 
 
