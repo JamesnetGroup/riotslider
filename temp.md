@@ -10,7 +10,7 @@
 
 ---
 
-
+  
 
 ## WPF 슬라이더 컨트롤의 세부 메커니즘 분석 및 Riot 스타일의 커스터마이징 (Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control)
 
@@ -24,7 +24,7 @@ WPF에서 Template을 포함하는 Button 그리고 ToggleButton 등과 같은 �
 
 이 뿐만 아니라, 앞으로도 Slider 컨트롤 이상으로 더 복잡하고 다양한 컨트롤들을 해부하고 분석할 예정입니다. 우리의 GitHub 레포지터리와 CodeProject, 그리고 YouTube와 BiliBili에서 제공하는 튜토리얼 영상까지도 많은 응원과 관심, 그리고 지지를 부탁드립니다.
 
-
+  
 
 ## Contents
 
@@ -53,7 +53,7 @@ WPF에서 Template을 포함하는 Button 그리고 ToggleButton 등과 같은 �
 22. RiotSlider 템플릿 전체 완성 (마무리)
 23. 마지막 남기는 말
 
-
+  
 
 ## 1. WPF Tutorial Series
 
@@ -67,7 +67,7 @@ WPF에서 Template을 포함하는 Button 그리고 ToggleButton 등과 같은 �
 
 - [x] Riot Slider: [BiliBili]()
 
-
+  
 
 ## 2. Specification
 
@@ -78,11 +78,11 @@ WPF플랫폼에 익숙치 않은 경우, 환경이 혼란스러울 수도 있습
 - [x] Version: C# / NET 8.0 / WPF / windows target only
 - [x] NuGet: Jamesnet.Wpf
 
-
+  
 
 운영체제는 최신 윈도우 버전을 사용하는 것을 권장합니다. 다만 Avalonia UI, Uno Platform, MAUI 등으로의 플랫폼 확장을 고려할 경우 서브 디바이스로써 충분히 MacOS 고려하는 것도 좋습니다. 저희 또한 Thinkpad/Macbook을 사용하고 있습니다. 단 MacOS 또는 리눅스 기반에서는 비주얼스튜디오 사용이 불가능하므로 Rider가 유일한 대안이라는 점을 알아두시기를 바랍니다. ~~vscode~~
 
-
+  
 
 ## 3. 애플리케이션 프로젝트 생성
 
@@ -94,13 +94,13 @@ WPF플랫폼에 익숙치 않은 경우, 환경이 혼란스러울 수도 있습
 
 - [x] 프로젝트 버전: 닷넷 8.0
 
-
+  
 
 ## 4. Slider 주요 기능 분석
 
 WPF Slider 컨트롤은 Button과 같은 단순 컨트롤과는 달리 아주 다양한 속성들이 존재합니다. 특히 이 속성들을 컨트롤의 기능적인 중요한 역할을 담당하기 때문에 관심 있게 살펴볼 필요가 있으며, 그 중에서도 특별하게 동작하는 주요 속성들은 다음과 같습니다.
 
-
+  
 
 **Orientation:** 
 
@@ -121,17 +121,17 @@ Orientation 속성은 StackPanel 컨트롤에서도 찾아볼 수 있습니다. 
 </Style>
 ```
 
-
+  
 
 Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿이 스위칭 되는 것을 볼 수 있습니다. 따라서 실제 이 컨트롤의 세부 구성이 어떻게 되어있는지를 한번 쯤 살펴본다면, Orientation 속성이 꽤나 중요한 역할을 하고 있다는 것을 단번에 쉽게 이해할 수 있습니다.
 
 > 재밌는 부분입니다. 원본을 보기전까지는 Orientation을 통해 템플릿을 스위칭하는 상상이나 응용을 할 수 있었을까요? 오픈소스는 이렇게 다양한 영감을 주기도 합니다. 그리고 이 소스코드를 통해 Template을 스위칭하는 최적의 타이밍이 바로 "Style.Trigger"라는 사실도 체크합시다.
 
-
+  
 
 이번 튜토리얼 영상에서는 Horizontal 방향만 구현할 예정이기 때문에 Orientation을 통한 분기 스위칭 작업은 하지 구현하지 않습니다. 그렇지만 여러분은 Vertical 방향도 한번 만들어 보고, Fork를 통해 Pull Request 요청을 해보세요. 미션입니다.
 
-
+  
 
 그럼 Hrizontal/Vertical 속성이 각각 적용된 모습도 한번 살펴볼까요?
 
@@ -141,7 +141,7 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 > 아래서 다룰 SelectionRage (파랑) 영역도 보이네요.
 
-
+  
 
 - [x] Orientation: **Vertical**
 
@@ -149,7 +149,7 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 > 이처럼 (ControlTemplate) 템플릿 자체를 스위칭하는 비슷한 컨트롤을 더 찾아보면 꽤나 존재합니다. (ScrollViewer 등)
 
-
+  
 
 ##### **Minimum, Maximum 그리고 Value:** 
 
@@ -157,7 +157,7 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
 
 그리고 이 속성들이 모두 DependencyProperty로 되어 있기 때문에, 바인딩을 통해 동적인 상호작용도 가능합니다. 예를 들어 MVVM 구조에서 이 세 개의 값을 활용하여 특정 시나리오에 따라 Range를 동적으로 변경하거나 다양한 응용을 통해 재미있는 구현이 가능해집니다.
 
-
+  
 
 ##### SelectionStart, SelectionEnd 그리고 IsSelectionRangeEnabled:
 
@@ -177,13 +177,13 @@ Orientation 속성을 기준으로 트리거에서 (ControlTemplate) 템플릿�
         IsSelectionRangeEnabled="True"/>
 ```
 
-
+  
 
 놀랍게도, Value값이 SelectionEnd Binding을 통해 연결되어 값이 변결될 때마다 Selection (Range) 범위가 동적으로 변경되는 효과를 얻을 수 있습니다. WPF 개발진이 의도한걸까요? 멋집니다, 구현 방식도 매우 깔끔해서 기분가지 좋아집니다.
 
 > 글 후반부에 있을 Riot 스타일의 Slider (CustomControl)  구현에서 아주 알짜배기 역할을 하게 될 것입니다, 살짝 기억해주세요.
 
-
+  
 
 
 ## 5. 원본 스타일 추출 과정
