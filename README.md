@@ -579,3 +579,25 @@ public override void OnApplyTemplate()
 ```
 > Though there are slight differences, all share a design similar to WPF.
 
+## 9. Concluding the Slider Analysis
+We've taken a close look at the WPF Slider control, confirming that WPF (CustomControl) controls are intricately and well-designed. These principles apply equally to other controls and serve as a crucial foundation when designing new ones.
+
+Some say WPF is dead. However, WPF is still very much alive and continues to hold its ground. Delving into WPF opens up endless possibilities and excitement.
+
+If dreaming of developing everything with WPF was once just a fantasy, the advent of Xamarin and .NET Core, followed by various other platforms, has turned it into reality. This is the result of the wishes and contributions of many developers who love WPF.
+
+We've looked in detail at why analyzing basic controls is essential. It is recommended to review the tutorial videos to reinforce and learn from the explanations.
+
+Next, we will create a new Riot-style (CustomControl) Slider based on this analysis.
+
+## 10. Creating a Riot-Style Slider (CustomControl) Control
+Now, we will leverage the analysis of the Slider to minimally design and implement a control that captures its essence. The project's core is to complete the control without using any code by utilizing the PART_ sections.
+
+Focus on understanding the content by closely following the implementation process and sequence. If you wish to deepen your understanding of CustomControl, it is recommended to study in depth through the book WPF Inside Out.
+
+##### Motivation
+It's unlikely that anyone would use the basic Slider as is. Needing inspiration, I chose to design a Slider based on the design concept seen in Riot Games' League of Legends, an experience I've had in creating such controls.
+
+In fact, this design started a few years ago out of curiosity to implement a high-level game client in WPF for "League of Legends." If you're interested in seeing how this Slider control actually works, check out this repository. Furthermore, anyone can contribute through Fork, which has already seen over 80 forks.
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/003948fe-70c3-4be4-927f-d0b391ac7b05" style="width:600px; float: left"/>
