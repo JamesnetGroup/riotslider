@@ -1771,7 +1771,8 @@ Slider 컨트롤을 (CustomControl) 기반으로 구현했기 때문에 이와 �
 
 
 
-<사진>
+<img width="435" alt="11-11" src="https://github.com/vickyqu115/riotslider/assets/101777355/f46ed494-a7ee-4fb8-8105-b6a12977bc12">
+
 
 
 
