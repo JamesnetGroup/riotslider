@@ -939,7 +939,6 @@ WPF는 꽤나 강력하고 유연한 (Responsive) 반응형 레이아웃을 사�
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:riots="clr-namespace:SliderControl;assembly=SliderControl"
         mc:ignorable="d"
-        Background="#010A13"
         Title="MainWindow" Width="800" Height="450">
     <Grid>
         <riots:RiotSlider Width="200" Height="50" Background="#EEEEEE"/>
