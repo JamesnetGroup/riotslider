@@ -1368,6 +1368,7 @@ Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 �
     <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
     <Setter Property="Minimum" Value="0"/>
     <Setter Property="Maximum" Value="100"/>
+    <Setter Property="IsSelectionRangeEnabled" Value="True"/>
     <Setter Property="Template">
         <Setter.Value>
             <ControlTemplate TargetType="{x:Type local:RiotSlider}">
@@ -1394,11 +1395,11 @@ Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 �
                         </Track>
                     </Grid>
                 </Border>
-                <ControlTemplate.Rigger>
-					<Trigger Property="IsSelectionRangeEnabled" Value="true">
-                        <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
+                <ControlTemplate.Trigger>
+                    <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                           <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
                     </Trigger>
-                </ControlTemplate.Rigger>
+                </ControlTemplate.Trigger>
             </ControlTemplate>
         </Setter.Value>
     </Setter>
