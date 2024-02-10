@@ -1055,9 +1055,7 @@ Track은 Thumb를 포함한 Slider의 핵심 컨트롤 요소입니다. 또한 `
 - [x] Track 이동 기능
 
 
-
-<img width="390" alt="11-7" src="https://github.com/vickyqu115/riotslider/assets/101777355/9f13cde2-25a6-47c7-beaf-c54cc5910419">
-
+<img width="372" alt="11-7" src="https://github.com/vickyqu115/riotslider/assets/101777355/59f2ecdb-6468-40f4-804f-92f31926abd5">
 
 
 
