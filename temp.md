@@ -1111,7 +1111,6 @@ Thumb를 Ellipse 형태로 구성했기 때문에 이 큼직한 (50x50) 크기�
 ```
 
 
-
 단순 중첩 효과가 필요하기 때문에, Grid의 RowDefenitions 또는 ColumnDefenitions를 사용할 필요도 없습니다.
 
 
@@ -1259,7 +1258,8 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 
 
 
-<사진>
+<img width="389" alt="11-9" src="https://github.com/vickyqu115/riotslider/assets/101777355/b1bfdef5-e8dd-4b38-9d7f-60eeccc00dcd">
+
 
 
 
