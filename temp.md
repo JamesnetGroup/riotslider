@@ -1351,7 +1351,7 @@ Riot Slider 컨트롤의 컨셉을 생각한다면 이번 처리를 굳이 할 �
 </Trigger>
 ```
 
->SelectionRange의 기본 보이기 값을 Collapsed로 지정하되, IsSelectionRangeEnabled 속성의 값이 True일 때 Visibility 값을 Visible로 변경하도록 트리거를 설정합니다. 이를 반대로 적용할 수 도 있겠지만 트리거에서 Boolean 속성의 True 값을 체크하는 것이 좀 더 일연스러운 일반적인 코드 규칙입니다.
+> SelectionRange의 기본 보이기 값을 Collapsed로 지정하되, IsSelectionRangeEnabled 속성의 값이 True일 때 Visibility 값을 Visible로 변경하도록 트리거를 설정합니다. 이를 반대로 적용할 수 도 있겠지만 트리거에서 Boolean 속성의 True 값을 체크하는 것이 좀 더 일연스러운 일반적인 코드 규칙입니다.
 
 
 
