@@ -643,7 +643,6 @@ All files being deleted are actually essential for configuring the (CustomContro
 Only when creating the file as a CustomControl class type will the related DefaultStyleKeyProperty syntax be included with the static constructor. Carefully selecting the correct type during creation is crucial to avoid missing CustomControl code syntax, which would otherwise need to be manually entered.
 
 ```csharp
-Copy code
 public class RiotSlider : Slider
 {
     static RiotSlider()
