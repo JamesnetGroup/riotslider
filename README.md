@@ -1,4 +1,4 @@
-Introduction
+ Introduction
 > M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L15.29 7.29L12 10.59L8.71 7.29L12 4M7.29 8.71L10.59 12L7.29 15.29L4 12L7.29 8.71M16.71 8.71L20 12L16.71 15.29L13.41 12L16.71 8.71M12 13.41L15.29 16.71L12 20L8.71 16.71L12 13.41Z
 
 [Pictogrammers(rhombus-split-outline)](https://pictogrammers.com/library/mdi/icon/rhombus-split-outline/)
@@ -601,3 +601,93 @@ It's unlikely that anyone would use the basic Slider as is. Needing inspiration,
 In fact, this design started a few years ago out of curiosity to implement a high-level game client in WPF for "League of Legends." If you're interested in seeing how this Slider control actually works, check out this repository. Furthermore, anyone can contribute through Fork, which has already seen over 80 forks.
 
 <img src="https://github.com/vickyqu115/riotslider/assets/52397976/003948fe-70c3-4be4-927f-d0b391ac7b05" style="width:600px; float: left"/>
+
+## 11. Project Creation and Preparation
+
+Following the creation of our DemoApp (WPF Application) project, it's time to create a CustomControl library project. If you prefer to continue with the DemoApp project, you can skip this project creation step.
+
+##### Project Creation:
+- [x] Project Name: SliderControl
+- [x] Project Type: WPF CustomControl Library
+- [x] Project Version: .NET 8.0
+
+
+<img width="253" alt="11-1" src="https://github.com/vickyqu115/riotslider/assets/101777355/eb164539-2bd1-46b1-a658-d339cc39b865">
+
+##### Deleting Default Files:
+
+- [x] AssemblyInfo.cs
+- [x] Themes/Generic.xaml
+- [x] CustomControl1.cs
+
+
+
+<img width="243" alt="11-2" src="https://github.com/vickyqu115/riotslider/assets/101777355/ecd698ad-674e-440f-84b4-481caa5b8272">
+
+
+All files being deleted are actually essential for configuring the (CustomControl) control but are removed for reconfiguring the location or project setup.
+
+> Elements that were deleted in the process of recreating the control will be automatically regenerated, so there is no need to worry about file deletion.
+
+##### (CustomControl) File Creation:
+- [x] Create Class: RiotSlider.cs (CustomControl class)
+
+
+<img width="253" alt="11-3" src="https://github.com/vickyqu115/riotslider/assets/101777355/0c52e698-2353-4e11-8253-0a801de9f119">
+
+Only when creating the file as a CustomControl class type will the related DefaultStyleKeyProperty syntax be included with the static constructor. Carefully selecting the correct type during creation is crucial to avoid missing CustomControl code syntax, which would otherwise need to be manually entered.
+
+```csharp
+Copy code
+public class RiotSlider : Slider
+{
+    static RiotSlider()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(RiotSlider), new FrameworkPropertyMetadata(typeof(RiotSlider)));
+    }
+}
+```
+
+
+##### Checking Auto-generated Files:
+- [x] Properties/AssemblyInfo.cs
+- [x] Themes/Generic.xaml
+
+
+
+<img width="708" alt="11-4" src="https://github.com/vickyqu115/riotslider/assets/101777355/867bdc09-adf2-4852-9aa3-3c4828df6672">
+
+
+
+Note that if the file is not created as a CustomControl class type, these files will not be auto-generated. This is an important consideration.
+
+## 12. TextBlock (Hi Slider)
+
+This step is a test to ensure the Slider control is properly configured as a CustomControl.
+
+Creating a (CustomControl) Slider control for the first time results in an empty ControlTemplate. To visually verify it, adding design elements is a common method. Thus, let's add a temporary TextBlock with text.
+
+### Adding Temporary TextBlock:
+
+- [x] Hi Slider
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Template">
+        <Setter.Value>        
+            <ControlTemplate TargetType="{x:Type RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <TextBlock Text="Hi Slider" Foreground="Blue"/>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+
+> Add "Hi Slider" text along with a TextBlock inside the empty ControlTemplate Border. Optionally, changing the font color can also be a good touch. Feel free to experiment with different methods.
+
+
+
