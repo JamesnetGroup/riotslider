@@ -1027,3 +1027,492 @@ Copy code
     </Setter>
 </Style>
 ```
+
+
+##### Result Verification:
+
+ - [x] Margin gap equal to the Thumb radius confirmed
+
+
+<img width="389" alt="11-9" src="https://github.com/vickyqu115/riotslider/assets/101777355/b1bfdef5-e8dd-4b38-9d7f-60eeccc00dcd">
+
+As a result, it's confirmed that the maximum movement range of the Track and the design size of the slider bar precisely match.
+
+Additionally, it's worth exploring ideas for dynamically handling this Sync task. One immediate thought is to designate this slider bar control as a PART_ and then handle it within the CodeBehind. There are various methods to consider, so take some time to think about it.
+
+## 18. PART_SelectionRange
+
+The SelectionRange is an element that specifies a certain range, as analyzed earlier in the Slider.
+
+This control, like the Track, is a PART_ element and is fully managed within the Slider control, so it only needs to be placed with the promised name. The design should be specified with the same height as the slider bar added earlier for a consistent appearance.
+
+##### Adding SelectionRange Border area:
+
+- [x] Name: `PART_SelectionRange`
+- [x] Heigh:t 2.5 
+- [x] Background: #000000
+- [x] Margin: 25 0 25 0
+
+```xaml
+Copy code
+<Border x:Name="PART_SelectionRange" 
+        Background="#000000" 
+        Height="2.5"
+        Margin="25 0 25 0"/>
+```
+
+
+##### Specifying Range:
+For SelectionEnd, synchronize the range with the Value through RelativeSource Binding.
+
+ - [x] SelectionStart: 0
+ - [x] SelectionEnd: {Binding RelativeSource {RelativeSource Self}, Path=Value}
+
+```xaml
+Copy code
+<Setter Property="SelectionStart" Value="0"/>
+<Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+```
+
+
+By synchronizing the value of SelectionEnd with Value, you can dynamically represent the range. The Slider control in the actual League of Legends client application is implemented in the same way.
+
+##### Enabling IsSelectionRangeEnabled:
+Considering the concept of the Riot Slider control, this process might not be necessary. However, since it can be easily handled through a trigger, let's proceed for learning purposes.
+
+> This part is not covered in the tutorial video.
+
+ - [x] IsSelectionRangeEnabled: True
+
+```xaml
+Copy code
+<Setter Property="IsSelectionRangeEnabled" Value="True"/>
+```
+
+>The default value of the IsSelectionRangeEnabled property is set to True.
+
+ - [x] PART_SelectionRange Visibility: (Default) Collapsed
+
+
+```xaml
+Copy code
+<Border x:Name="PART_SelectionRange" 
+        Background="#000000" 
+        Height="2.5"
+        Margin="25 0 25 0"
+        Visibility="Collapsed"/>
+```
+
+
+>The default Visibility value of SelectionRange is set to Collapsed.
+
+ - [x] Trigger: PART_SelectionRange.Visibility=Visible
+
+
+```xaml
+Copy code
+<Trigger Property="IsSelectionRangeEnabled" Value="True">
+    <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
+</Trigger>
+```
+
+> The default visibility of SelectionRange is set to Collapsed, but when the IsSelectionRangeEnabled property value is True, the Visibility value is changed to Visible through a trigger. Although the reverse could also be applied, checking the True value of a Boolean property in a trigger is a more straightforward and common coding convention.
+
+##### Source Code and Execution Result:
+ - [x] Setter Applied
+ - [x] SelectionRange (Default) Collapsed
+ - [x] Trigger Applied for IsSelectionRangeEnabled
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="IsSelectionRangeEnabled" Value="True"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="#CCCCCC" Height="2.5" Margin="25 0 25 0"/>
+                        <Border x:Name="PART_SelectionRange" 
+                                Background="#000000" 
+                                Height="2.5"
+                                Margin="25 0 25 0"
+                                HorizontalAlignment="Left"
+                                Visibility="Collapsed"/>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+                <ControlTemplate.Trigger>
+                    <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                           <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
+                    </Trigger>
+                </ControlTemplate.Trigger>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+
+<img width="391" alt="11-10" src="https://github.com/vickyqu115/riotslider/assets/101777355/617d041b-b54f-4df9-aabb-4d63ac1d7815">
+
+
+Now that we have added all the functional elements to the Slider, let's finish this step by re-examining the functions of the PART_ control elements before moving on to the next phase.
+
+##### Re-checking the operation of PART_ control functions:
+ - [x] PART_Track
+ - [x] PART_SelectionRange
+
+## 19. Adding Riot Style Design Elements
+
+Next, it's time to add the design elements required for the Riot Slider.
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/c060395c-03f8-4abf-a630-bf17a2587106" style="width: 600px; float: left"/>
+
+##### Adding Geometry Design Resources:
+
+ - [x] Geometry: ThumbData
+
+```xaml
+<Geometry x:Key="ThumbData">
+    M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L15.29 7.29L12 10.59L8.71 7.29L12 4M7.29 8.71L10.59 12L7.29 15.29L4 12L7.29 8.71M16.71 8.71L20 12L16.71 15.29L13.41 12L16.71 8.71M12 13.41L15.29 16.71L12 20L8.71 16.71L12 13.41Z
+</Geometry>
+```
+
+The reason for using a Geometry Path element instead of an image file for the Thumb icon, as discussed in previous conferences and videos, is the flexibility in changing colors through color triggers and maintaining high quality with vector-based advantages.
+
+> For simple icons like this one, even non-designers can create them using Visual Studio Blend, Figma, Illustrator, etc. It's not difficult, so definitely give it a try.
+
+When requesting vector-based icons from colleagues, it's best to ask for them in SVG type and, for monochrome designs, in a combined form. Additionally, many icons are freely available from the open-source community. Notably, the Pictogrammers open-source team offers over 8,000 monochrome design icons in .SVG, .PNG, and even .XAML formats. An interesting aspect is that they are managed as open-source through GitHub, allowing you to check major contributors or even participate in the open-source project.
+
+Next, we will add the primary color resources.
+
+##### Adding LinearGradientBrush Design Resources:
+
+- [x] LinearGradientBrush: ThumbColor
+- [x] LinearGradientBrush: ThumbOver
+- [x] LinearGradientBrush: ThumbDrag
+- [x] SolidColorBrush: SliderColor
+- [x] LinearGradientBrush: RangeColor
+- [x] LinearGradientBrush: SliderOver
+- [x] LinearGradientBrush: SliderDrag
+
+```xaml
+<LinearGradientBrush x:Key="ThumbColor" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#B79248" Offset="0"/>
+    <GradientStop Color="#997530" Offset="0.5"/>
+    <GradientStop Color="#74592B" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="ThumbOver" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#EDE1C8" Offset="0"/>
+    <GradientStop Color="#DCC088" Offset="0.5"/>
+    <GradientStop Color="#CBA14A" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="ThumbDrag" StartPoint="0.5,0" EndPoint="0.5,1">
+    <GradientStop Color="#473814" Offset="0"/>
+    <GradientStop Color="#57421B" Offset="0.5"/>
+    <GradientStop Color="#684E23" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="SliderColor" Color="#1E2328"/>
+
+<LinearGradientBrush x:Key="RangeColor" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#463714" Offset="0"/>
+    <GradientStop Color="#58471D" Offset="0.5"/>
+    <GradientStop Color="#695625" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="SliderOver" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#795B28" Offset="0"/>
+    <GradientStop Color="#C1963B" Offset="0.5"/>
+    <GradientStop Color="#C8AA6D" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="SliderDrag" StartPoint="0,0.5" EndPoint="1,0.5">
+    <GradientStop Color="#685524" Offset="0"/>
+    <GradientStop Color="#55441B" Offset="0.5"/>
+    <GradientStop Color="#463714" Offset="1"/>
+</LinearGradientBrush>
+```
+
+> Design resources like colors often have x:Key naming conventions that include using uppercase or camel case, and sometimes mirroring namespace syntax with dots (.). Personally, my opinion on these rules changes like the wind each year, making me hesitant to express a definitive stance. Currently, I prefer to keep them as short as possible. Please take this lightly.
+
+Observing the design style of League of Legends, it's easy to notice the extensive use of gradients. One way to extract these colors is by using Photoshop or any application that includes a dropper tool for color extraction.
+
+> For colors suspected to be part of a gradient, try dividing the area visually and use the dropper tool to extract colors multiple times. With practice, your ability to discern colors sharpens.
+
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/b7e9fae1-9f8f-4fab-baab-9cfa1c9e013f" style="width: 500px; float: left"/>
+
+
+
+## Implementing a Riot Style Thumb
+
+It's time to use the prepared Geometry and design elements to create a proper League of Legends style Thumb control.
+
+Before we start, we need to dispose of the temporary Ellipse used in defining the Thumb template earlier. Therefore, we'll remove all parts of the Thumb defined with an Ellipse.
+
+##### Disposing of the Existing Thumb:
+
+ - [x] Remove Thumb and its template entirely
+
+```xaml
+Copy code
+<Track x:Name="PART_Track">
+    <Track.Thumb>
+        <Thumb>
+            <Thumb.Template>
+                <ControlTemplate>
+                    <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                </ControlTemplate>
+            </Thumb.Template>
+        </Thumb>
+    </Track.Thumb>
+</Track>
+```
+
+> Remove the Thumb and template defined directly within the Track, leaving only the Track.
+
+Now, it's time to create a new Riot style Thumb.
+
+The Thumb we just removed was temporarily defined by directly extending the template through Track. This time, however, we will implement it in a cleaner manner using StaticResource.
+
+##### Defining a New Thumb Template:
+ - [x] Implement and refine resources for a Riot style Thumb
+
+```xaml
+Copy code
+<Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
+    <Setter Property="Background" Value="#010A13"/>
+    <Setter Property="Width" Value="24"/>
+    <Setter Property="Height" Value="24"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Thumb}">
+                <Grid Background="{TemplateBinding Background}">
+                    <Path x:Name="path" Data="{StaticResource ThumbData}" Fill="{StaticResource ThumbColor}"/>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbOver}"/>
+                    </Trigger>
+                    <Trigger Property="IsDragging" Value="True">
+                        <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbDrag}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+
+
+> Managing XAML resources in a CustomControl is surprisingly straightforward. Resources are physically separated through Generic.xaml, so continue to manage detailed elements through x:Key for further granularity. This is why Geometry and LinearGradientBrush were also separated. These resources only need to be included in the same .XAML file as the RiotSlider control's style.
+
+Thumb, being a control inherited from Control, allows for design through templates (ControlTemplate), enabling the creation of another control with detailed triggers implemented. For even more detailed control creation, Thumb can be further refined using the CustomControl approach, which is quite common in WPF's default controls.
+
+Exploring further, we find controls like ToolBarOverflowPanel, which may sound unfamiliar but are numerous. These are more specialized controls created under the CustomControl umbrella, typically grouped under the Primitives namespace.
+
+Thus, controls under this namespace are often embedded within other (CustomControl) controls. For example, the ToggleButton, which serves as the parent for CheckBox/RadioButton but is also used within the template of controls like ComboBox for switching items.
+
+> Interesting, right? These architectural concepts apply across all platforms sharing XAML, making them useful in environments like AvaloniaUI, Uno, MAUI, etc.
+
+> However, not all controls bundled under the Primitives namespace necessarily follow the CustomControl approach indicated by DefaultStyleKey. Many are simply wrapped classes.
+
+
+## 21. Declaring Thumb Resources
+Lastly, declare the Thumb as a resource so it can be referenced as a StaticResource within the Track.
+
+## Adding Thumb Resources:
+ - [x] Define the Thumb style along with the Thumb resource as previously templated
+
+```xaml
+Copy code
+<Thumb x:Key="SliderThumb" Style="{StaticResource ThumbStyle}"/>
+```
+
+
+> This part is detailed in the tutorial video as well, so if the syntax feels awkward, it's recommended to check it out for clarity.
+
+Now, the Thumb resource can be used within the Track.
+
+##### Concisely Defining Thumb in Track:
+
+- [x]  Replace the existing Thumb with a single line connecting to StaticResource
+```xaml
+Copy code
+<Track Thumb="{StaticResource SliderThumb}"/>
+```
+
+
+> Using the Thumb as a resource allows for a significant reduction in the amount of source code when applying the Thumb to the Track. It also aids in understanding the overall resources at a glance, making this method of resource management crucial for maintaining consistent code quality. Pay close attention to mastering this approach.
+
+## 22. Completing the RiotSlider Template (Finalization)
+
+This concludes the implementation of the RiotSlider control template. Additionally, the Jamesnet.WPF library is included for using JamesGrid, but it can be replaced with a standard Grid if preferred.
+
+##### (CustomControl) RiotSlider:
+
+ - [x] Check the complete source code in Generic.xaml
+
+
+```xaml
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:james="https://jamesnet.dev/xaml/presentation"
+    xmlns:local="clr-namespace:SliderControl">
+
+    <Geometry x:Key="ThumbData">
+        M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L15.29 7.29L12 10.59L8.71 7.29L12 4M7.29 8.71L10.59 12L7.29 15.29L4 12L7.29 8.71M16.71 8.71L20 12L16.71 15.29L13.41 12L16.71 8.71M12 13.41L15.29 16.71L12 20L8.71 16.71L12 13.41Z
+    </Geometry>
+
+    <LinearGradientBrush x:Key="ThumbColor" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#B79248" Offset="0"/>
+        <GradientStop Color="#997530" Offset="0.5"/>
+        <GradientStop Color="#74592B" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ThumbOver" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#EDE1C8" Offset="0"/>
+        <GradientStop Color="#DCC088" Offset="0.5"/>
+        <GradientStop Color="#CBA14A" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ThumbDrag" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#473814" Offset="0"/>
+        <GradientStop Color="#57421B" Offset="0.5"/>
+        <GradientStop Color="#684E23" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
+        <Setter Property="Background" Value="#010A13"/>
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Path x:Name="path" Data="{StaticResource ThumbData}" Fill="{StaticResource ThumbColor}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbOver}"/>
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="{StaticResource ThumbDrag}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Thumb x:Key="SliderThumb" Style="{StaticResource ThumbStyle}"/>
+
+    <SolidColorBrush x:Key="SliderColor" Color="#1E2328"/>
+
+    <LinearGradientBrush x:Key="RangeColor" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#463714" Offset="0"/>
+        <GradientStop Color="#58471D" Offset="0.5"/>
+        <GradientStop Color="#695625" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="SliderOver" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#795B28" Offset="0"/>
+        <GradientStop Color="#C1963B" Offset="0.5"/>
+        <GradientStop Color="#C8AA6D" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SliderDrag" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="#685524" Offset="0"/>
+        <GradientStop Color="#55441B" Offset="0.5"/>
+        <GradientStop Color="#463714" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style TargetType="{x:Type local:RiotSlider}">
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+        <Setter Property="SelectionStart" Value="0"/>
+        <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self},Path=Value}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <james:JamesGrid Rows="*" Columns="Auto,*" Height="2.5" Margin="12 0 12 0">
+                            <Border Background="{StaticResource RangeColor}" x:Name="PART_SelectionRange"/>
+                            <Border Background="{StaticResource SliderColor}"/>
+                        </james:JamesGrid>
+                        <Track x:Name="PART_Track" Thumb="{StaticResource SliderThumb}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsMouseOver}" Value="True">
+                            <Setter TargetName="PART_SelectionRange" Property="Background" Value="{StaticResource SliderOver}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=PART_Track, Path=Thumb.IsDragging}" Value="True">
+                            <Setter TargetName="PART_SelectionRange" Property="Background" Value="{StaticResource SliderDrag}"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+```
+
+
+> Furthermore, two more triggers have been added, and the feature of this project is to manage all elements as resources, finely segregated for easy comprehension of the RiotSlider control's (ControlTemplate) template area.
+
+Since the Slider control is implemented based on (CustomControl), it becomes easier to manage related resources like a resource pack.
+
+##### Final Result Verification:
+
+ - [x] Test functions related to PART_Track
+ - [x] Test functions related to PART_SelectionRange
+ - [x] Verify the application of design elements
+
+
+> While the functional aspects have been explored through various stages from analysis to implementation, it's advisable to once again check the functionality based on the PART_ controls.
+
+<img width="435" alt="11-11" src="https://github.com/vickyqu115/riotslider/assets/101777355/f46ed494-a7ee-4fb8-8105-b6a12977bc12">
+
+
+This concludes the development process and tutorial video review for analyzing the basic Slider control and implementing the League of Legends style RiotSlider control based on (CustomControl).
+
+> There may be differences between the video and this content, or there could be errors in the source code. Please feel free to point out any significant issues.
+
+## 23. Final Words
+
+We delved deeply into the architectural aspects of creating a seemingly simple WPF Slider control. The fact that there's so much to discuss about something so seemingly trivial suggests that there's a lot to learn from WPF's design aspects. Be sure to check out the tutorial video as well. Vicky's interpretation through the video is also intriguing.
+
+WPF is an older platform, and as such, a variety of development methodologies, frameworks, and open-source libraries have evolved and changed over the years. Over time, mainstream evaluations and interpretations will continue to vary. Therefore, the historical journeys we've taken can all serve as the groundwork for our technology. Flexibly judging and evaluating these can lead to finding richer and higher-quality references. The mainstream isn't always the only answer.
+
+This review, not quite a review, was written with the hope of reaching many.
+
+Wishing everyone a happy holiday season!
+Thank you.
+
+
+
+
+
