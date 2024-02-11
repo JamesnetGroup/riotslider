@@ -865,7 +865,7 @@ Because the Thumb is designed as an Ellipse, this sizable (50x50) ellipse will m
 
 > Try changing the name to understand this relationship once again.
 
-### 16.Adding the Slider Bar
+## 16.Adding the Slider Bar
 
 Next, we will add the slider bar. This step involves adding purely design-related elements that don't affect functionality. Thus, it can be skipped without impacting functionality, but considering the next step involves combining design elements with the SelectionRange, this task also requires careful attention.
 
