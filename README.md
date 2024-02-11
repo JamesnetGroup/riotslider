@@ -1259,7 +1259,7 @@ Observing the design style of League of Legends, it's easy to notice the extensi
 
 
 
-## Implementing a Riot Style Thumb
+## 20.Implementing a Riot Style Thumb
 
 It's time to use the prepared Geometry and design elements to create a proper League of Legends style Thumb control.
 
@@ -1335,7 +1335,7 @@ Thus, controls under this namespace are often embedded within other (CustomContr
 ## 21. Declaring Thumb Resources
 Lastly, declare the Thumb as a resource so it can be referenced as a StaticResource within the Track.
 
-## Adding Thumb Resources:
+###### Adding Thumb Resources:
  - [x] Define the Thumb style along with the Thumb resource as previously templated
 
 ```xaml
