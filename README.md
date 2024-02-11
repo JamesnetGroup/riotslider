@@ -707,7 +707,6 @@ With the TextBlock prepared for testing, it's now time to run the DemoApp applic
   - [x] Insert Control: riots:RiotSlider
 
 ```xaml
-Copy code
 <Window x:Class="DemoApp.MainWindow" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -740,6 +739,7 @@ This RiotSlider is now modularly managed as a CustomControl. You can manage this
 And, this project has already been distributed through the NuGet Package Store. Interesting, right?
 
 ## 14. Setting Riot Slider Size
+
 Next, it's time to set the control size.
 
 WPF allows for a powerful and flexible (Responsive) responsive layout. Thus, when specifying the size of a control, designing it to be responsive is typical. However, there are exceptions. In cases where design elements like Sliders are heavily involved, you may need to set a fixed height or width to maintain a natural design, necessitating the specification of absolute sizes. Therefore, it's important to flexibly adapt according to the characteristics of the control.
@@ -967,7 +967,6 @@ The key point of this step is to arrange the slider bar's design and position ha
 Although the slider bar's design and placement seem appropriately arranged, in reality, the Track's movement range is limited by the radius of the Thumb at both the start and end. Upon examining the original WPF source code, you can find code like this:
 
 ```csharp
-Copy code
 Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
 ```
 
@@ -983,7 +982,6 @@ To make the work more comfortable, we specify the opacity of the Ellipse control
 - [x] Ellipse Fill: #55000000
 
 ```xaml
-Copy code
 <Ellipse Width="50" Height="50" Fill="#55000000"/>
 ```
 
