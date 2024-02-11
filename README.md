@@ -969,4 +969,61 @@ Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - Select
 ```
 
 
-> This source code is based on Orientation="Horizontal". Therefore, the values would change to Height for
+> The above source code is based on an Orientation of "Horizontal". Therefore, if the orientation is changed to "Vertical", it will change to Height. Can you check if this is correct?
+
+As seen in the code above, it can be inferred that the actual movement range of the Track is also internally limited by the radius of the ThumbSize to both sides. Therefore, the slider bar we added earlier is not a PART_ element managed within the Slider control, so we must apply this rule directly. While there are ways to handle this dynamically, in this work, we will precisely align the margin between the slider bar and the Track movement range through the Margin property.
+
+##### Thumb Ellipse Opacity Setting:
+
+To make the work more comfortable, we specify the opacity of the Ellipse control.
+
+- [x] Ellipse Fill: #55000000
+
+```xaml
+Copy code
+<Ellipse Width="50" Height="50" Fill="#55000000"/>
+```
+
+> In WPF, specifying the opacity of an element is commonly done using the Opacity property. However, using the alpha value of a color to apply transparency to that specific color can be much more useful. It's one of the handy tips in WPF, so make good use of it.
+
+##### Applying Margin equal to the Thumb radius on the slider bar:
+
+Since the current Ellipse's Width is 50, we apply a Margin of 25 on each side.
+
+- [x] Margin="25 0 25 0"
+
+
+```xaml
+Copy code
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="#CCCCCC" Height="2.5" Margin="25 0 25 0"/>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#55000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
