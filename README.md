@@ -920,7 +920,6 @@ While the slider bar should be placed to overlap with the Track, it's essential 
 
 
 ```xaml
-Copy code
 <Style TargetType="{x:Type local:RiotSlider}">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="SelectionStart" Value="0"/>
