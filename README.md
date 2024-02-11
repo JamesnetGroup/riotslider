@@ -667,7 +667,7 @@ This step is a test to ensure the Slider control is properly configured as a Cus
 
 Creating a (CustomControl) Slider control for the first time results in an empty ControlTemplate. To visually verify it, adding design elements is a common method. Thus, let's add a temporary TextBlock with text.
 
-### Adding Temporary TextBlock:
+##### Adding Temporary TextBlock:
 
 - [x] Hi Slider
 
@@ -762,3 +762,211 @@ This control will be designed with a height (Thumb) of 50 as the standard. Thus,
         <riots:RiotSlider Width="200" Height="50" Background="#EEEEEE"/>
     </Grid>
 </Window>
+```
+
+> Temporarily changing the Background color along with adjusting the control size makes it easier to identify the control. It's a useful tip.
+
+##### Checking Execution Results:
+ - [x] Control Size: Width/Height
+ - [x] Control Color: Background
+
+<img width="591" alt="11-6" src="https://github.com/vickyqu115/riotslider/assets/101777355/6e84759d-cb7c-4582-a9d8-36f05ca2df1f">
+
+
+ Once the execution results are verified with no issues, let's remove the Background color.
+
+## 15. PART_Track
+The Track, including the Thumb, is a core control element of the Slider. Through analysis, we've seen that the Slider control handles all these functionalities with the declaration of PART_Track. Thus, incorporating this essential element appropriately becomes a critical and central moment in this implementation.
+
+Let's examine this carefully.
+
+##### Adding Track:
+ - [x] Insert PART_Track control element
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Track x:Name="PART_Track"/>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+> The Track is one of the few controls that directly inherit from FrameworkElement, bypassing Control. This means it is not entitled to layout design like a Template. Therefore, it internally includes a Thumb, allowing you to focus solely on the Thumb for layout design.
+
+##### Defining Thumb:
+Next, it's time to define the Thumb that will move within the Track.
+
+ - [x] Extend and define Thumb template
+ - [x] Implement Ellipse
+
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Track x:Name="PART_Track">
+                        <Track.Thumb>
+                            <Thumb>
+                                <Thumb.Template>
+                                    <ControlTemplate>
+                                        <Ellipse Width="50" Height="50" Fill="#000000"/>
+                                    </ControlTemplate>
+                                </Thumb.Template>
+                            </Thumb>
+                        </Track.Thumb>
+                    </Track>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+> This illustrates the Thumb being directly extended and implemented within the Track. The syntax might be challenging to understand, but it's visually detailed in the tutorial video, so watching it is recommended.
+
+Unlike the Track, the Thumb allows control definition through a template, meaning the Thumb inherits from Control, not FrameworkElement. Thus, the Thumb's ControlTemplate enables flexible control design.
+
+##### Checking Execution Results:
+ - [x] Thumb (Ellipse) Design
+ - [x] Track Movement Functionality
+
+
+       
+<img width="372" alt="11-7" src="https://github.com/vickyqu115/riotslider/assets/101777355/59f2ecdb-6468-40f4-804f-92f31926abd5">
+
+Because the Thumb is designed as an Ellipse, this sizable (50x50) ellipse will move within the Track area. However, if you change the name of the Track from PART_Track to something else, the movement of the Thumb will immediately be lost.
+
+> Try changing the name to understand this relationship once again.
+
+### 16.Adding the Slider Bar
+
+Next, we will add the slider bar. This step involves adding purely design-related elements that don't affect functionality. Thus, it can be skipped without impacting functionality, but considering the next step involves combining design elements with the SelectionRange, this task also requires careful attention.
+
+##### Layout Change:
+
+So far, the layout only contained the Track element within a Border. However, adding a slider bar necessitates changing the existing layout. Moreover, since the slider bar and Track need to overlap, using a Grid is the best approach. Therefore, the first step is to wrap the Track in a Grid.
+
+- [x] Change Layout to Grid
+
+```xaml
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+No need for RowDefinitions or ColumnDefinitions in the Grid, as we only require a simple overlay effect.
+
+##### Adding the Slider Bar to Overlap with the Track:
+
+While the slider bar should be placed to overlap with the Track, it's essential to logically consider which element should be in front. The Track's Thumb control should cover the slider bar area, so it's crucial to add and declare the slider bar before the Track.
+
+- [x] Add (Border) slider bar
+- [x] Height: 2.5
+- [x]  Background: #CCCCCC
+
+
+```xaml
+Copy code
+<Style TargetType="{x:Type local:RiotSlider}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="SelectionStart" Value="0"/>
+    <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:RiotSlider}">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="#CCCCCC" Height="2.5"/>
+                        <Track x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Ellipse Width="50" Height="50" Fill="#000000"/>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+
+Using a layout element like a Border is effective for visually representing the length of the Track. Especially, the Border's CornerRadius attribute allows for rounded corners, offering a design advantage over other controls.
+
+##### Checking Execution Results:
+ - [x] Movement of Thumb (Ellipse)
+ - [x] Design of the slider bar (Border)
+
+<img width="367" alt="11-8" src="https://github.com/vickyqu115/riotslider/assets/101777355/6e3bc204-c9ad-4bb4-ab7c-2c56c033d6b0">
+
+The key point of this step is to arrange the slider bar's design and position harmoniously with the Track's movement path and the Thumb's movement.
+
+## 17. Adjusting the Gap Between the Slider Bar and Track
+Although the slider bar's design and placement seem appropriately arranged, in reality, the Track's movement range is limited by the radius of the Thumb at both the start and end. Upon examining the original WPF source code, you can find code like this:
+
+```csharp
+Copy code
+Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
+```
+
+
+> This source code is based on Orientation="Horizontal". Therefore, the values would change to Height for
