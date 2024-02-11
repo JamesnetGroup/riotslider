@@ -1057,7 +1057,6 @@ This control, like the Track, is a PART_ element and is fully managed within the
 - [x] Margin: 25 0 25 0
 
 ```xaml
-Copy code
 <Border x:Name="PART_SelectionRange" 
         Background="#000000" 
         Height="2.5"
@@ -1072,7 +1071,6 @@ For SelectionEnd, synchronize the range with the Value through RelativeSource Bi
  - [x] SelectionEnd: {Binding RelativeSource {RelativeSource Self}, Path=Value}
 
 ```xaml
-Copy code
 <Setter Property="SelectionStart" Value="0"/>
 <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
 ```
@@ -1088,7 +1086,6 @@ Considering the concept of the Riot Slider control, this process might not be ne
  - [x] IsSelectionRangeEnabled: True
 
 ```xaml
-Copy code
 <Setter Property="IsSelectionRangeEnabled" Value="True"/>
 ```
 
@@ -1098,7 +1095,6 @@ Copy code
 
 
 ```xaml
-Copy code
 <Border x:Name="PART_SelectionRange" 
         Background="#000000" 
         Height="2.5"
@@ -1113,7 +1109,6 @@ Copy code
 
 
 ```xaml
-Copy code
 <Trigger Property="IsSelectionRangeEnabled" Value="True">
     <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
 </Trigger>
@@ -1278,7 +1273,6 @@ Before we start, we need to dispose of the temporary Ellipse used in defining th
  - [x] Remove Thumb and its template entirely
 
 ```xaml
-Copy code
 <Track x:Name="PART_Track">
     <Track.Thumb>
         <Thumb>
@@ -1302,7 +1296,6 @@ The Thumb we just removed was temporarily defined by directly extending the temp
  - [x] Implement and refine resources for a Riot style Thumb
 
 ```xaml
-Copy code
 <Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
     <Setter Property="Background" Value="#010A13"/>
     <Setter Property="Width" Value="24"/>
@@ -1349,7 +1342,6 @@ Lastly, declare the Thumb as a resource so it can be referenced as a StaticResou
  - [x] Define the Thumb style along with the Thumb resource as previously templated
 
 ```xaml
-Copy code
 <Thumb x:Key="SliderThumb" Style="{StaticResource ThumbStyle}"/>
 ```
 
@@ -1362,7 +1354,6 @@ Now, the Thumb resource can be used within the Track.
 
 - [x]  Replace the existing Thumb with a single line connecting to StaticResource
 ```xaml
-Copy code
 <Track Thumb="{StaticResource SliderThumb}"/>
 ```
 
