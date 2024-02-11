@@ -685,9 +685,80 @@ Creating a (CustomControl) Slider control for the first time results in an empty
         </Setter.Value>
     </Setter>
 </Style>
-
+``` 
 
 > Add "Hi Slider" text along with a TextBlock inside the empty ControlTemplate Border. Optionally, changing the font color can also be a good touch. Feel free to experiment with different methods.
 
 
 
+## 13. Adding References and Testing Execution
+
+With the TextBlock prepared for testing, it's now time to run the DemoApp application to verify if the RiotSlider control loads correctly.
+
+##### Adding References in the DemoApp Project:
+ - [x] Add Reference: RiotSliderControl Project
+
+##### Declaring xmlns and Adding Control in MainWindow.xaml:
+  - [x] Declare xmlns: xmlns:riots
+  - [x] Insert Control: riots:RiotSlider
+
+```xaml
+Copy code
+<Window x:Class="DemoApp.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:riots="clr-namespace:SliderControl;assembly=SliderControl"
+        mc:ignorable="d"
+        Title="MainWindow" Width="800" Height="450">
+    <Grid>
+        <riots:RiotSlider/>
+    </Grid>
+</Window>
+```
+
+
+##### Checking Execution Results:
+- [x]  Riot Slider: "Hi Slider"
+
+
+<img width="395" alt="11-5" src="https://github.com/vickyqu115/riotslider/assets/101777355/145a7aa7-364d-41a2-a74a-dfe0b95a9e26">
+
+
+
+With this, we have completed setting up and verifying the execution of the (CustomControl) RiotSlider control.
+
+CustomControl is more complex than UserControl, so it may be challenging until you become accustomed to the process like this. Thus, overcoming this requires repetitive training.
+
+This RiotSlider is now modularly managed as a CustomControl. You can manage this control on a GitHub repository or upload and distribute it through the NuGet package store. Modularization of CustomControls in WPF can have many management advantages, so it's good to consider this when designing projects.
+
+And, this project has already been distributed through the NuGet Package Store. Interesting, right?
+
+## 14. Setting Riot Slider Size
+Next, it's time to set the control size.
+
+WPF allows for a powerful and flexible (Responsive) responsive layout. Thus, when specifying the size of a control, designing it to be responsive is typical. However, there are exceptions. In cases where design elements like Sliders are heavily involved, you may need to set a fixed height or width to maintain a natural design, necessitating the specification of absolute sizes. Therefore, it's important to flexibly adapt according to the characteristics of the control.
+
+This control will be designed with a height (Thumb) of 50 as the standard. Thus, we will pre-specify the height of the RiotSlider. The width, while being responsive as the path for the Track's movement, will be limited to 200 for convenience during the development stage.
+
+
+### Control Size and Color Adjustment:
+
+- [x] Width: 200
+- [x] Height: 50
+- [x] Background: "#EEEEEE"
+
+```xaml
+<Window x:Class="DemoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:riots="clr-namespace:SliderControl;assembly=SliderControl"
+        mc:ignorable="d"
+        Title="MainWindow" Width="800" Height="450">
+    <Grid>
+        <riots:RiotSlider Width="200" Height="50" Background="#EEEEEE"/>
+    </Grid>
+</Window>
