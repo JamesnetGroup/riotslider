@@ -998,7 +998,6 @@ Since the current Ellipse's Width is 50, we apply a Margin of 25 on each side.
 
 
 ```xaml
-Copy code
 <Style TargetType="{x:Type local:RiotSlider}">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="SelectionStart" Value="0"/>
