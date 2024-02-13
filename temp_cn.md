@@ -10,3 +10,51 @@
 当然，想要一一查看和了解WPF所有控件的内部详情是比较困难的，当下我们也没有这样的必要。
 因为WPF的所有源代码都通过GitHub仓库以开源形式公开和管理。因此我们可以根据需要随时访问GitHub仓库来查找和分析需要了解的控件。
 不仅如此，未来我们还计划分析和解剖比Slider控件更加复杂和多样的控件，所以希望大家能够多多支持、关注和鼓励我们在在GitHub、BiliBili等其它平台上提供的教程内容。
+
+### 目录
+
+1.WPF系列教程
+
+2.Specification
+
+3.创建应用程序
+
+4.分析Slider主要功能
+
+5.原始样式提取过程
+
+6.分析内部源代码
+
+7.确认Code behind（GitHub开源）
+
+8.跨平台中的 OnApplyTemplate
+
+9.结束Slider分析
+
+10.创建Riot风格的Slider控件（CustomControl）
+
+11.创建项目与准备
+
+12.TextBlock（Hi Slider）
+
+13.添加引用并测试
+
+14.设置Riot Slider大小
+
+15.PART_Track
+
+16.添加滑动条
+
+17.调整滑动条和Track之间的误差间隙
+
+18.PART_SelectionRange
+
+19.添加Riot风格的设计元素
+
+20.实现Riot风格的Thumb
+
+21.声明Thumb资源
+
+22.RiotSlider Template完成（总结）
+
+23.结束语
