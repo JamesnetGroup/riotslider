@@ -1,3 +1,4 @@
+![WechatIMG12](https://github.com/vickyqu115/riotslider/assets/101777355/b686d831-2de6-410b-949d-52b6b9993873)
 ## Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control
 
 在WPF中，像Button和Toggle Button等这一类的基本控件的Template在结构和逻辑上都设计得非常简单和直观，（无需单独的代码处理）仅通过XAML就可以轻松实现。
@@ -10,6 +11,8 @@
 当然，想要一一查看和了解WPF所有控件的内部详情是比较困难的，当下我们也没有这样的必要。
 因为WPF的所有源代码都通过GitHub仓库以开源形式公开和管理。因此我们可以根据需要随时访问GitHub仓库来查找和分析需要了解的控件。
 不仅如此，未来我们还计划分析和解剖比Slider控件更加复杂和多样的控件，所以希望大家能够多多支持、关注和鼓励我们在在GitHub、BiliBili等其它平台上提供的教程内容。
+
+![20240201163433798](https://github.com/vickyqu115/riotslider/assets/101777355/f30773e5-9ad3-4b19-b104-5c026af2577e)
 
 ## 目录
 
