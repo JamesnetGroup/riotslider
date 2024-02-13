@@ -1,5 +1,5 @@
 ## Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control
-### 前言
+
 在WPF中，像Button和Toggle Button等这一类的基本控件的Template在结构和逻辑上都设计得非常简单和直观，（无需单独的代码处理）仅通过XAML就可以轻松实现。
 而像TextBox、ComboBox、Slider这一类更加结构化的控件（不仅仅是XAML）则就必须通过C#代码进行复杂处理之后才可以实现。
 
@@ -11,7 +11,7 @@
 因为WPF的所有源代码都通过GitHub仓库以开源形式公开和管理。因此我们可以根据需要随时访问GitHub仓库来查找和分析需要了解的控件。
 不仅如此，未来我们还计划分析和解剖比Slider控件更加复杂和多样的控件，所以希望大家能够多多支持、关注和鼓励我们在在GitHub、BiliBili等其它平台上提供的教程内容。
 
-### 目录
+## 目录
 
 1.WPF系列教程
 
