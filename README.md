@@ -57,7 +57,7 @@ Beyond the Slider control, there are plans to dissect and analyze even more comp
 
 - [x] Magic Navigation Bar: [Youtube](https://youtu.be/dxuLWlukthg?si=CpvQ-TJ2tQu9sY3F), [BiliBili](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati)
 
-- [ ] Riot Slider: [Youtube](https://youtu.be/jyv2fP9TUtY?si=CM3JIXLMseTGyOko) [BiliBili](https://www.bilibili.com/video/BV1uy421a7yM/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2)
+- [ ] Riot Slider: [Youtube](https://youtu.be/jyv2fP9TUtY?si=CM3JIXLMseTGyOko), [BiliBili](https://www.bilibili.com/video/BV1uy421a7yM/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2)
 
 ## Specifications:
 
