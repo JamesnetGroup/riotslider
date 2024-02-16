@@ -281,23 +281,11 @@ ControlTemplate: **SliderVertical**
 </ControlTemplate>
 ```
 
-如上所述，可以确认到的是Horizontal/Vertical各自的源代码是分支实现的。因此，构造方便的内容是一直的，只是设计层面的方向不同而已。
-
-让我们准确地来查看一下。共同包含的元素如下：
-
-- [ ] Name: TopTick
-- [ ] Name: BottomTick
-- [ ] Name: TrackBackground
-- [x] **Name: PART_SelectionRange**
-- [x] **Name: PART_Track**
-- [ ] Name: Thumb
-- [ ] Trigger: TickPlacement
-- [ ] Trigger: IsSelectionRangeEnabled
-- [ ] Trigger: IsKeyboardFocused
+如上所示，可以确认到的是Horizontal/Vertical各自的源代码是分支实现的。因此，构造方便的内容是一直的，只是设计层面的方向不同而已。
 
 
-每个ControlTemplate中都包含了以上这些共同的元素。既然我们已经确认了它们都有相同的配置，那我们就集中查看一下SliderHorizontal的部分。
 
-##### 命名规则：PART_
-在(CustomControl)控件结构中，XAML和Code behind之间的紧密连接是一个非常重要的元素。但是，为了进行连接，需要通过GetTemplateChild方法来查找控件名称，那这样在可读性层面上看起来就不是很好了。所以为了完善这种开发方式并进行系统化管理，这里我们可以使用PART_命名规则。
+
+
+
 
