@@ -283,6 +283,54 @@ ControlTemplate: **SliderVertical**
 
 如上所示，可以确认到的是Horizontal/Vertical各自的源代码是分支实现的。因此，构造方便的内容是一直的，只是设计层面的方向不同而已。
 
+让我们准确地来查看一下。共同包含的元素如下：
+
+- [ ] Name: TopTick
+- [ ] Name: BottomTick
+- [ ] Name: TrackBackground
+- [x] **Name: PART_SelectionRange**
+- [x] **Name: PART_Track**
+- [ ] Name: Thumb
+- [ ] Trigger: TickPlacement
+- [ ] Trigger: IsSelectionRangeEnabled
+- [ ] Trigger: IsKeyboardFocused
+
+
+每个ControlTemplate中都包含了以上这些共同的元素。既然我们已经确认了它们都有相同的配置，那我们就来集中查看一下SliderHorizontal的部分。
+
+##### 命名规则：PART_
+在(CustomControl)控件结构中，XAML和Code behind之间的紧密连接是一个非常重要的元素。两者连接时需要通过GetTemplateChild方法来查找控件名称，那这样的方式在可读性层面上看起来就不是很好了。所以为了完善这种开发方式并进行系统化管理，这里我们可以使用“PART_”命名规则。
+
+“PART_”是一个命名规则。其方法是在所有通过GetTemplateChild方法查找的控件名称前加上“PART_”前缀，以便在XAML中推测其功能。因此，当分析(ControlTemplate)控件时，如果发现是以“PART_”开始的控件名称，则可以推测这是一个必需的元素，并预测删除它时可能会产生的副作用。
+
+所以总的来说，了解这个性能对于CustomControl的实现是很有帮助的。此外，这个规则不仅在WPF中很常见，也是XAML共享的其他跨平台中常见的一种结构，因此这一部分内容的重要性是不容忽视的。
+
+_Slider中存在两个PART_控件。_
+
+ - [x] PART_Track
+ - [x] PART_SelectionRange
+
+此外，除了上述两个“PART_”控件之外的其他控件在Code behind中并不使用，所以我们通过命名规则确保了这一点。
+所以在CustomControl开发中严格遵守这个规则是非常重要的。
+
+##### 测试：更改PART_Track名称后测试其影响
+
+让我们更改PART_Track控件的名称。
+
+```xaml
+<Track x:Name="PART_Track1" Grid.Row="1">
+    ...
+</Track>
+```
+
+> 确保是在Sliderhorizontal区域内正确进行了测试。
+
+此状态下运行应用程序，就像教程视频中显示的一样，无论如何通过尝试移动Track的Thumb，它都将不会移动。而Thumb不再移动的原因是，则正是由于我们更改了名称，所以导致Code behind区域通过GetTemplateChild无法找到PART_Track控件，当然也就不能实现PART_Track功能了。
+
+但如果将PART_Track1的名称改回原来的PART_Track，功能就能恢复正常了。
+
+> 这种现象在许多其他基本控件中也可以找到，其中一个典型例子是TextBox的“PART_ContentHost”。
+
 
 
 
