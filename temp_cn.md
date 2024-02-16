@@ -184,3 +184,9 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
  - [x]  提取到当前文件（This document）
  - [x] 提取到App.xaml文件（Application）
  - [x] 创建新的ResourceDictionary文件并提取（Resource Dictionary）
+
+提取过程仅能在Partial形式的UserControl设计区进行，并通过选择控件、右击来进行。在这个过程中，可以“指定样式名称/确定提取样式的复制位置”。
+
+> 可以试着查找一下VScode或Rider是否也提供了这样的方法。
+
+我们来逐步查看一下这个过程
