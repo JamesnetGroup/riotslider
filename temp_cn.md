@@ -94,3 +94,26 @@
 - [x] 项目名称：DemoApp
 
 - [x] 项目版本：.NET 8.0
+
+## 4.分析Slider的主要功能
+
+与Button等简单控件不同，WPF的Slider控件存在许多不同的属性。特别是，这些属性在控件的功能性方面扮演着重要的角色，因此需要仔细研究，其中一些特别行为的主要属性如下：
+
+**Orientation:** 
+
+WPF提供的控件通常具有通用性质。Slider控件中的Orientation属性就是一个例子。通过这个属性，可以将方向指定为水平或垂直方向。
+
+Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orientation值是Vertical，但Slider的默认Orientation值是Horizontal。因此，通常情况下，Slider是被默认为水平状态，所以大多数人可能会忽略这个Orientation的功能。
+
+为了帮助理解Orientation功能，我们来看一下下面这个有意简化的Slider部分代码。
+
+```xaml
+<Style TargetType="{x:Type Slider}">
+    <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+    <Style.Triggers>
+    	<Trigger Property="Orientation" Value="Vertical">
+    	    <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+    	</Trigger>
+    </Style.Triggers>
+</Style>
+```
