@@ -200,6 +200,7 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
  - [x] 提取样式选项窗口：Create ControlTemplate Resource (Window)
 
 <img src="https://github.com/vickyqu115/riotslider/assets/52397976/d895d1fd-f709-4909-a968-3cd4692550ac" style="float: left; width: 500px"/>
+
 > Name (Key) & 定义Define in 选项
 
 通常，指定Name在测试或管理层面上来说都是很正确的选择。如果选择“Apply to all”，而不指定名称，那么通过Define选项指定的位置生成的样式将应用在全局。所以需要正确理解这一点后谨慎进行提取。
