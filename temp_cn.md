@@ -63,7 +63,7 @@
 23.结束语
 
 
-## WPF Tutorial Series
+## 1.WPF Tutorial Series
 
 > 目前为止，我们在YouTube和BiliBili平台上共发布了四个中英文（YouTube上配有韩文字幕）教程系列。我们希望通过视频的形式将复杂的源代码更加整体化具像化地详细讲解，以便于能够增强大家对WPF的理解。
 
@@ -75,4 +75,22 @@
 
 - [x] Riot Slider: [Youtube](https://www.youtube.com/watch?v=jyv2fP9TUtY) [BiliBili](https://www.bilibili.com/video/BV1uy421a7yM/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5377407/Analyzing-and-Customizing-the-Detailed-Mechanisms), [GitHub](https://github.com/vickyqu115/riotslider)
 
+## 2.Specifications：
+如果你不熟悉WPF平台，可能会会不太适应这样的开发环境。该项目基于.NET 8.0，但由于使用的是WPF，框架目标仅限于Windows，所以只能在Windows环境下开发和运行。IDE可以选择Visual Studio或JetBrains公司提供的Rider。使用Visual Studio时，版本必须要在VS2022以上才可运行.NET 8.0。因此，如果你使用的是VS2022以下版本，需要将.NET版本迁移到与你的IDE版本相匹配。
 
+- [x] OS: Microsoft Windows 11
+- [x] IDE: Microsoft Visual Studio 2022
+- [x] Version: C# / NET 8.0 / WPF / windows target only
+- [x] NuGet: Jamesnet.Wpf
+
+我们推荐使用最新版本的Windows操作系统。不过，如果考虑到将平台扩展到Avalonia UI、Uno Platform、MAUI等，也完全可以考虑将MacOS作为一个次要设备。我们也同时在使用Thinkpad和Macbook。但是请注意，在MacOS或基于Linux的系统上不能使用Visual Studio，因此Rider是唯一的选择。~~vscode~~
+
+## 3. 创建应用程序项目
+
+首先，需要创建一个WPF应用程序项目。
+
+- [x] 项目类型：WPF应用程序
+
+- [x] 项目名称：DemoApp
+
+- [x] 项目版本：.NET 8.0
