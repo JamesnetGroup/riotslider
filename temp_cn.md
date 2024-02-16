@@ -130,3 +130,32 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
 <img src="https://github.com/vickyqu115/riotslider/assets/52397976/9b8a3528-6a84-4982-aff1-78cd9eb3cdb7" width="300" style="float:left"/>
 
 > 下面也会涉及到选择范围（SelectionRange，蓝色）区域。
+
+- [x] Orientation: Vertical
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/bbcbeaa9-1763-4435-b92b-be2a71a5ee73" width="300" style="float:left"/>
+
+如上所示，我们可以发现更多通过（ControlTemplate）模板切换的类似控件存在（例如：ScrollViewer等）。
+
+##### **Minimum, Maximum以及Value:**
+
+这些是表示最小范围/最大范围以及值的double类型属性。内部逻辑是根据这些值自动计算控件的大小和比例，进而确定Range和Value值的位置。
+
+由于这些属性都是DependencyProperty，因此可以通过绑定实现动态交互。例如，在MVVM架构中，可以利用这三个值根据特定场景动态更改Range，或通过各种应用实现很多有趣的功能。
+
+##### SelectionStart, SelectionEnd以及IsSelectionRangeEnabled:
+
+这两个属性（SelectionStart/SelectionEnd）的作用是设置特殊区域。但是其实这个区域并不包含任何特殊功能。仅仅是起到为了指定某个区间并在视觉上进行强调的作用。而IsSelectionRangeEnabled属性表示这个区域是否激活。根据这个激活状态，通过触发器切换区域的Visibility属性值（Visible/Collapsed）。
+
+那你可以能会疑问，尽然没有什么实际的功能，还有必要使用这个功能吗？
+其实，考虑到其在设计和不同领域的通用性，如果将其与Value值一起应用，可以产生非常有趣的效果，就像下面这样。
+
+```xaml
+<Slider Orientation="Horizontal"
+        Minimum="0"
+        Maximum="100"
+        Value="30"
+        SelectionStart="0"
+        SelectionEnd="{Binding Value, RelativeSource={RelativeSource Self}"
+        IsSelectionRangeEnabled="True"/>
+```
