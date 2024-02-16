@@ -181,7 +181,7 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
 ##### 提取方法和步骤：Visual Studio
 
  - [x] 提取基本控件（Slider）样式（Edit a Copy...）
- - [x]  提取到当前文件（This document）
+ - [x] 提取到当前文件（This document）
  - [x] 提取到App.xaml文件（Application）
  - [x] 创建新的ResourceDictionary文件并提取（Resource Dictionary）
 
@@ -235,4 +235,69 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
     </Style.Triggers>
 </Style>
 ```
+
+通过以上内容，我们可以发现它将默认的模板指定为了SliderHorizontal (ControlTemplate)模板的，通过触发器当Orientation属性值为Vertical时，会切换到SliderVertical (ControlTemplate)模板。
+
+> 通过这样将(ControlTemplate)模板模块化管理，即使使用不切换情况下，也有助于一目了然地看到实际样式的结构，这是一种值得尝试的结构管理方式。
+我们的项目中也经常会这样处理，通过查看这样的代码获得了非常多的灵感。
+
+因此，与Slider控件相关的功能实质上分别在SliderHorizontal和SliderVertical这两个(ControlTemplate)模板区域内实现了。
+
+下一步，我们来确认一下默认指定的SliderHorizontal (ControlTemplate)模板。
+
+##### 确认ControlTemplate:
+
+我们来看一下Horizontal/Vertical各自专用的模板。这些内容都可以在App.xaml文件内找到。
+
+ - [x] Horizontal专用模板
+ - [x] Vertical专用模板
+
+
+ControlTemplate: **SliderHorizontal**
+
+```xaml
+<ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
+    <Border ...>
+		...
+    </Border>
+    <ControlTemplate.Triggers>
+		...
+    </ControlTemplate.Triggers>
+</ControlTemplate>
+```
+
+
+
+ControlTemplate: **SliderVertical**
+
+```xaml
+<ControlTemplate x:Key="SliderVertical" TargetType="{x:Type Slider}">
+    <Border ...>
+		...
+    </Border>
+    <ControlTemplate.Triggers>
+		...
+    </ControlTemplate.Triggers>
+</ControlTemplate>
+```
+
+如上所述，可以确认到的是Horizontal/Vertical各自的源代码是分支实现的。因此，构造方便的内容是一直的，只是设计层面的方向不同而已。
+
+让我们准确地来查看一下。共同包含的元素如下：
+
+- [ ] Name: TopTick
+- [ ] Name: BottomTick
+- [ ] Name: TrackBackground
+- [x] **Name: PART_SelectionRange**
+- [x] **Name: PART_Track**
+- [ ] Name: Thumb
+- [ ] Trigger: TickPlacement
+- [ ] Trigger: IsSelectionRangeEnabled
+- [ ] Trigger: IsKeyboardFocused
+
+
+每个ControlTemplate中都包含了以上这些共同的元素。既然我们已经确认了它们都有相同的配置，那我们就集中查看一下SliderHorizontal的部分。
+
+##### 命名规则：PART_
+在(CustomControl)控件结构中，XAML和Code behind之间的紧密连接是一个非常重要的元素。但是，为了进行连接，需要通过GetTemplateChild方法来查找控件名称，那这样在可读性层面上看起来就不是很好了。所以为了完善这种开发方式并进行系统化管理，这里我们可以使用PART_命名规则。
 
