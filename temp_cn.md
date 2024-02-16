@@ -61,3 +61,18 @@
 22.RiotSlider Template完成（总结）
 
 23.结束语
+
+
+## WPF Tutorial Series
+
+> 目前为止，我们在YouTube和BiliBili平台上共发布了四个中英文（YouTube上配有韩文字幕）教程系列。我们希望通过视频的形式将复杂的源代码更加整体化具像化地详细讲解，以便于能够增强大家对WPF的理解。
+
+- [x] Theme Switch: [Youtube](https://youtu.be/rGox76Bm6VY?si=jTNutyRFctAfTTeS), [BiliBili](https://www.bilibili.com/video/BV1ez4y1N7B8/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5372268/Use-WPF-to-Create-a-Day-and-Night-Theme-Switch-But), [GitHub](https://github.com/vickyqu115/themeswitch)
+
+- [x] Riot PlayButton: [Youtube](https://youtu.be/xgUqDavCJGg?si=Ok8qZjNQUKUEbgfT), [BiliBili](https://www.bilibili.com/video/BV1Tu4y1j7Ei/?spm_id_from=333.788.recommend_more_video.-1&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5373396/Creating-a-League-of-Legends-Inspired-Play-Button), [GitHub](https://github.com/vickyqu115/riotplaybutton)
+
+- [x] Magic Navigation Bar: [Youtube](https://youtu.be/dxuLWlukthg?si=CpvQ-TJ2tQu9sY3F), [BiliBili](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati), [GitHub](https://github.com/vickyqu115/navigationbar)
+
+- [x] Riot Slider: [Youtube](https://www.youtube.com/watch?v=jyv2fP9TUtY) [BiliBili](https://www.bilibili.com/video/BV1uy421a7yM/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5377407/Analyzing-and-Customizing-the-Detailed-Mechanisms), [GitHub](https://github.com/vickyqu115/riotslider)
+
+
