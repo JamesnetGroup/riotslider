@@ -148,7 +148,7 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
 这两个属性（SelectionStart/SelectionEnd）的作用是设置特殊区域。但是其实这个区域并不包含任何特殊功能。仅仅是起到为了指定某个区间并在视觉上进行强调的作用。而IsSelectionRangeEnabled属性表示这个区域是否激活。根据这个激活状态，通过触发器切换区域的Visibility属性值（Visible/Collapsed）。
 
 那你可以能会疑问，尽然没有什么实际的功能，还有必要使用这个功能吗？
-其实，考虑到其在设计和不同领域的通用性，如果将其与Value值一起应用，可以产生非常有趣的效果，就像下面这样。
+其实，考虑到其在设计和不同领域的通用性，如果将其与Value值一起应用，可以实现非常有趣的效果，就像下面这样。
 
 ```xaml
 <Slider Orientation="Horizontal"
@@ -159,3 +159,28 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
         SelectionEnd="{Binding Value, RelativeSource={RelativeSource Self}"
         IsSelectionRangeEnabled="True"/>
 ```
+
+此外有意思的是，通过SelectionEnd的绑定，Value值的变化可以动态地改变选择（Range）范围。
+*这是部分也是WPF开发团队早前的预期的吗？是真的非常酷！实现方式也非常干净利索，是非常好的编程体验。
+
+> 在文章后半部分将会实现一个Riot风格的Slider（CustomControl），以上这个功能将起到非常关键的作用，请留意这一点。
+
+## 5. 提取原始样式的过程
+
+如上所述，由于WPF是通过GitHub仓库以开源方式管理的，因此可以查看所有控件的源代码。但是，由于仓库包含了解决方案和所有项目及文件，因此仅提取特定控件部分的内容几乎是不可能的。
+
+但幸运的是，Visual Studio以GUI形式提供了提取特定控件的基本样式（Template）的功能。因此，我们无需通过逐个查找开源代码这样的过程，就可以轻松简单地利用这一功能来实现提取相关代码了。
+
+> 这也让我们想到了Blazor中的Identity脚手架（尽管性质略有不同，但是可以帮助理解）。
+
+此外，通过Visual Studio提取原始样式后，因为它是以实际可编辑的资源形式链接，所以可以立即自定义设计和功能。因此，不仅仅是Slider，
+**所有控件的原始样式和模板的提取，对于WPF研究/学习具有非常高的应用价值**
+
+> Infragistics、Syncfusion、ArticPro等并不是所有的商业组件都提供功能。每个公司公开的范围和政策各不相同，大多数情况下，相比于公开ControlTemplate，更倾向于通过DataTemplate模块化来促进自定义。所以大家也可以看一下，目前正在使用的组件是否具有这样的功能呢？
+
+##### 提取方法和步骤：Visual Studio
+
+ - [x] 提取基本控件（Slider）样式（Edit a Copy...）
+ - [x]  提取到当前文件（This document）
+ - [x] 提取到App.xaml文件（Application）
+ - [x] 创建新的ResourceDictionary文件并提取（Resource Dictionary）
