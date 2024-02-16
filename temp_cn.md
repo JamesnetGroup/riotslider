@@ -105,7 +105,7 @@ WPF提供的控件通常具有通用性质。Slider控件中的Orientation属性
 
 Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orientation值是Vertical，但Slider的默认Orientation值是Horizontal。因此，通常情况下，Slider是被默认为水平状态，所以大多数人可能会忽略这个Orientation的功能。
 
-为了帮助理解Orientation功能，我们来看一下下面这个有意简化的Slider部分代码。
+下面我们通过一个简化的Slider部分代码来帮助理解Orientation功能。
 
 ```xaml
 <Style TargetType="{x:Type Slider}">
@@ -117,3 +117,16 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
     </Style.Triggers>
 </Style>
 ```
+
+根据Orientation属性，可以看到触发器（ControlTemplate）中模板的切换。因此，稍微研究一下这个控件的详细配置，就可以很容易地理解Orientation这个属性充当了一个相当重要的角色。
+
+> 这是一个比较有意思的部分。在看到原始代码之前，你能想象到通过Orientation来切换模板的应用吗？其实开源项目就是这样给我们带来各种灵感。并且，通过这段源代码，我们也可以检查到"Style.Trigger"正是切换模板的最佳时机。
+
+在本教程视频中，我们只计划实现水平（Horizontal）方向，因此不会实现通过Orientation进行分支切换的操作。但是我们鼓励大家进行垂直（Vertical）方向的尝试，并通过Fork提交Pull Request请求。这是一个小任务哦～
+
+那么下面我们就来看一下水平/垂直属性各自应用的样子吧！
+- [x] Orientation: **Horizontal**
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/9b8a3528-6a84-4982-aff1-78cd9eb3cdb7" width="300" style="float:left"/>
+
+> 下面也会涉及到选择范围（SelectionRange，蓝色）区域。
