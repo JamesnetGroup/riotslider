@@ -190,3 +190,48 @@ Orientation属性也可以在StackPanel控件中找到。StackPanel的默认Orie
 > 可以试着查找一下VScode或Rider是否也提供了这样的方法。
 
 我们来逐步查看一下这个过程
+
+- [x] 提取样式命令：Slider > Right click > Edit Template > Edit a Copy...
+
+<img width="365" alt="image" src="https://github.com/vickyqu115/riotslider/assets/52397976/0d7f2e38-f616-4260-a256-f3e4eb5c9f09" style="float:left">
+
+> 如果没有可提取的样式，这个选项将不会被激活。
+
+ - [x] 提取样式选项窗口：Create ControlTemplate Resource (Window)
+
+<img src="https://github.com/vickyqu115/riotslider/assets/52397976/d895d1fd-f709-4909-a968-3cd4692550ac" style="float: left; width: 500px"/>
+> Name (Key) & 定义Define in 选项
+
+通常，指定Name在测试或管理层面上来说都是很正确的选择。如果选择“Apply to all”，而不指定名称，那么通过Define选项指定的位置生成的样式将应用在全局。所以需要正确理解这一点后谨慎进行提取。
+
+视频中设置了名称，并将Define位置指定为Application。因此，（如果文件存在）提取的资源将包含在App.xaml文件的Resources区域内。
+
+个人建议在进行此类提取操作时，最好在新项目中以测试性质进行。在现有项目中进行操作的话可能会导致小错误或问题。
+
+## 6. 分析提取的源代码
+
+如教程视频所示，我们成功提取了Slider控件的样式。接下来我们将在App.xaml文件中检查相关资源，并逐一研究##### 重要元素。
+
+##### 检查Orientation分支：
+
+我们之前简要提到了Orientation属性以及触发器和切换，那么现在就是时候查看实际实现的源代码了。
+
+下面的样式是包含在WPF基础样式原版中的提取出的SliderStyle1模板。
+
+
+```xaml
+<Style x:Key="SliderStyle1" TargetType="{x:Type Slider}">
+    <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="Foreground" 
+            Value="{StaticResource SliderThumb.Static.Foreground}"/>
+    <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+    <Style.Triggers>
+        <Trigger Property="Orientation" Value="Vertical">
+            <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+        </Trigger>
+    </Style.Triggers>
+</Style>
+```
+
