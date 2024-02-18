@@ -323,17 +323,31 @@ _Slider中存在两个PART_控件。_
 </Track>
 ```
 
-> 确保是在Sliderhorizontal区域内正确进行了测试。
+> 确认Sliderhorizontal区域显示是否正确（x1）
 
 此状态下运行应用程序，就像教程视频中显示的一样，无论如何通过尝试移动Track的Thumb，它都将不会移动。而Thumb不再移动的原因是，则正是由于我们更改了名称，所以导致Code behind区域通过GetTemplateChild无法找到PART_Track控件，当然也就不能实现PART_Track功能了。
 
 但如果将PART_Track1的名称改回原来的PART_Track，功能就能恢复正常了。
 
-> 这种现象在许多其他基本控件中也可以找到，其中一个典型例子是TextBox的“PART_ContentHost”。
+> 这种现象在许多其他基本控件中也可以找到，其中比较典型例子就是TextBox的“PART_ContentHost”。
 
+##### 测试: PART_SelectionRange变更名称后的影响
 
+接下来，让我们来测试一下改变PART_SelectionRange 控件的名称后的影响。
 
+```xaml
+<Rectangle x:Name="PART_SelectionRange1" .../>
+```
 
+> 确认Sliderhorizontal区域显示是否正确（x2）
 
+并且，在Trigger部分，我们可以看到PART_SelectionRange还使用在了这个地方，所以这一部分我们也需要一并修改。
 
+```xaml
+<Trigger Property="IsSelectionRangeEnabled" Value="true">
+    <Setter Property="Visibility" TargetName="PART_SelectionRange1" Value="Visible"/>
+</Trigger>
+```
+
+> 确认Sliderhorizontal区域显示是否正确(x3)
 
