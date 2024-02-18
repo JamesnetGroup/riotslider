@@ -351,3 +351,44 @@ _Slider中存在两个PART_控件。_
 
 > 确认Sliderhorizontal区域显示是否正确(x3)
 
+此外，在 Slider 中，为了能激活PART_SelectionRange范围以便激活范围区域。
+
+```xaml
+<Slider Style="{DynamicResource SliderStyle1}"
+        Minimum="0" Maximum="100"
+        SelectionStart="0" SelectionEnd="50"
+        IsSelectionRangeEnabled="True"/>
+```
+
+必须设置 Minimum/Maximum 以及 SelectionStart/SelectionEnd 和 IsSelectionRange，才能激活范围区域。
+
+ 更改前的名称：PART_SelectionRange
+在更改之前，可以正常看到 Range 区域。
+
+ 更改后的名称：PART_SelectionRange1
+现在，范围区域不再可见。
+
+这是因为内部无法找到 PART_SelectionRange 控件，所以没有对象来计算范围区域。
+
+如此，WPF 控件实现上比想象的更为宽松，同时构成了一定的模块化结构。因此，如果正确利用这些特性，可以很好地利用已实现的功能，或者排除不必要的功能。
+
+7. Code behind 检查 (GitHub 开源)
+既然我们已经详细查看了 PART_ 控件的命名规则及其影响，现在是时候查看实际类中如何使用这些控件了。
+
+Code behind (类) 区域不再是可以通过提取来检查的区域。因此，需要通过查看 WPF 仓库的官方源代码来进一步研究。具体查找方法建议观看教程视频以获取更详细的信息。
+
+在实际的源代码中，各个 PART_ 控件的名称如下以 string 形式约定：
+
+csharp
+Copy code
+private const string TrackName = "PART_Track";
+private const string SelectionRangeElementName = "PART_SelectionRange";
+由于名称是固定定义的，因此这是必须遵守的命名规则。
+
+WPF: OnApplyTemplate
+接下来，让我们看看如何从 (ControlTemplate) 模板中获取 Track 和 SelectionRange 的部分。
+
+
+
+
+
