@@ -1,5 +1,3 @@
-## 分析和自定义 WPF Slider 控件的详细机制
-
 ![WechatIMG12](https://jamesnetdev.blob.core.windows.net/articleimages/eed43f5b-4f62-465c-acf0-299a41b57337.gif)
 
 ## 分析和自定义 WPF Slider 控件的详细机制
