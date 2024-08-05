@@ -1,4 +1,103 @@
-![WechatIMG12](https://github.com/vickyqu115/riotslider/assets/101777355/b686d831-2de6-410b-949d-52b6b9993873)
+# RiotSlider [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md) [![한국어](https://img.shields.io/badge/Language-한국어-red.svg)](README.ko.md) [![中文](https://img.shields.io/badge/Language-中文-red.svg)](README.zh-CN.md)
+
+A WPF CustomControl implementation of a Slider inspired by League of Legends, showcasing advanced WPF techniques and control customization
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/download)
+[![Stars](https://img.shields.io/github/stars/vickyqu115/riotslider.svg)](https://github.com/vickyqu115/riotslider/stargazers)
+[![Issues](https://img.shields.io/github/issues/vickyqu115/riotslider.svg)](https://github.com/vickyqu115/riotslider/issues)
+
+
+
+## Project Overview
+
+RiotSlider is a custom WPF Slider control that demonstrates advanced techniques in WPF control development. It reimplements the standard WPF Slider as a CustomControl, utilizing the original WPF open-source implementation for PART_ reuse and showcasing the design patterns of WPF controls.
+
+<img src="https://github.com/vickyqu115/riotslider/assets/101777355/f30773e5-9ad3-4b19-b104-5c026af2577e" width="49%"/>
+<img src="https://github.com/user-attachments/assets/548285f7-e23f-4a5e-943d-83f42420032a" width="49%"/>
+<img src="https://github.com/user-attachments/assets/77245cb3-c6ab-42e5-a6e9-5a0c0ac4072b" width="49%"/>
+<img src="https://github.com/user-attachments/assets/4f559df9-0adc-412f-a062-b52136185f7a" width="49%"/>
+
+## Key Features and Implementations
+#### 1. Advanced CustomControl Development
+- [x] Inheritance from WPF Slider control for specialized functionality
+- [x] Reimplementation of Slider as a CustomControl
+- [x] Utilization of WPF GitHub open-source repository for reference
+
+#### 2. PART_ Control Reuse
+- [x] Strategic reuse of PART_Track and PART_SelectionRange
+- [x] Analysis and application of WPF control design patterns
+
+#### 3. Primitives Control Integration
+- [x] Effective use of Thumb and Track controls from Primitives namespace
+- [x] Custom styling and templating of primitive controls
+
+#### 4. Advanced XAML Techniques
+- [x] Implementation of complex UI elements using pure XAML
+- [x] Utilization of Geometry for vector-based graphics
+
+#### 5. Performance and Design Optimization
+- [x] Efficient rendering using WPF's layout and drawing techniques
+- [x] League of Legends inspired visual design
+
+## Technical Deep Dive
+- **CustomControl Architecture**: Demonstrates the power of CustomControl in WPF, allowing for complete control over behavior and appearance.
+- **PART_ Naming Convention**: Utilizes the PART_ naming convention for critical elements, ensuring compatibility with the base Slider functionality.
+- **Primitives Integration**: Showcases the use of low-level WPF controls like Thumb and Track for building complex UI elements.
+- **Open Source Analysis**: Leverages the WPF open-source repository to understand and implement advanced control features.
+- **Vector Graphics in WPF**: Utilizes Geometry and Path to create scalable, high-quality visual elements.
+
+## Technology Stack
+- WPF (Windows Presentation Foundation)
+- .NET 8.0
+- C# 10.0
+- XAML
+
+## Getting Started
+### Prerequisites
+- Visual Studio 2022 or later
+- .NET 8.0 SDK
+
+### Installation and Execution
+#### 1. Clone the repository:
+
+```
+git clone https://github.com/vickyqu115/riotslider.git
+```
+
+#### 2. Open the solution
+- [x] Visual Studio
+- [x] Visual Studio Code
+- [x] JetBrains Rider
+
+<img src="https://github.com/user-attachments/assets/af70f422-7057-4e77-a54d-042ee8358d2a" width="32%"/>
+<img src="https://github.com/user-attachments/assets/e4feaa10-a107-4b58-8d13-1d8be620ec62" width="32%"/>
+<img src="https://github.com/user-attachments/assets/5ff487f6-55e4-43e1-9abf-f8d419ee6943" width="32%"/>
+
+#### 3. Build and Run
+- [x] Set the startup project
+- [x] Press F5 or click the Run button
+- [x] Windows 11 recommended
+
+## Learning Resources
+- [Detailed Article on Implementation (jamesnet.dev)](https://jamesnet.dev/article/111)
+- [YouTube Tutorial (English)](https://bit.ly/4dpsr3m)
+- [BiliBili Tutorial (Chinese)](https://bit.ly/3QiZvkJ)
+- [CodeProject](https://bit.ly/3JyibsM)
+
+## Contributing
+Contributions to RiotSlider are welcome! Feel free to submit issues, create pull requests, or suggest improvements.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+- Website: https://jamesnet.dev
+- Email: vickyqu115@hotmail.com, james@jamesnet.dev
+
+Explore advanced WPF control development techniques with RiotSlider!
+
+-----
 
 ## Analyzing and Customizing the Detailed Mechanisms of WPF Slider Control
 
@@ -42,22 +141,11 @@ Beyond the Slider control, there are plans to dissect and analyze even more comp
 23. Final Remarks
 
 
-## WPF Tutorial Series
-
-> To date, four tutorial series have been released on YouTube and BiliBili. These videos are available in English and Chinese, with Korean subtitles on YouTube. We hope these videos, through sophisticated source code and detailed expert explanations, will enhance your understanding of WPF.
-
-- [x] Theme Switch: [Youtube](https://youtu.be/rGox76Bm6VY?si=jTNutyRFctAfTTeS), [BiliBili](https://www.bilibili.com/video/BV1ez4y1N7B8/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5372268/Use-WPF-to-Create-a-Day-and-Night-Theme-Switch-But), [GitHub](https://github.com/vickyqu115/themeswitch)
-
-- [x] Riot PlayButton: [Youtube](https://youtu.be/xgUqDavCJGg?si=Ok8qZjNQUKUEbgfT), [BiliBili](https://www.bilibili.com/video/BV1Tu4y1j7Ei/?spm_id_from=333.788.recommend_more_video.-1&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5373396/Creating-a-League-of-Legends-Inspired-Play-Button), [GitHub](https://github.com/vickyqu115/riotplaybutton)
-
-- [x] Magic Navigation Bar: [Youtube](https://youtu.be/dxuLWlukthg?si=CpvQ-TJ2tQu9sY3F), [BiliBili](https://www.bilibili.com/video/BV1Ui4y1a717/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5375482/Customizing-ListBox-for-a-Smooth-Animated-Navigati), [GitHub](https://github.com/vickyqu115/navigationbar)
-
-- [x] Riot Slider: [Youtube](https://www.youtube.com/watch?v=jyv2fP9TUtY) [BiliBili](https://www.bilibili.com/video/BV1uy421a7yM/?spm_id_from=333.999.0.0&vd_source=f62a1783ac9166a4d798823ad1861fd2), [CodeProject](https://www.codeproject.com/Articles/5377407/Analyzing-and-Customizing-the-Detailed-Mechanisms), [GitHub](https://github.com/vickyqu115/riotslider)
 
 ## Specifications:
 
 This project is based on .NET Core but is designated for Windows only due to the use of WPF. It is executable through VS2022, which is mandatory for running NET 8.0. Alternatively, JetBrains' Rider can also be used.
-
+review
 - [x] OS: Microsoft Windows 11
 - [x] IDE: Microsoft Visual Studio 2022
 - [x] Version: C# / NET 8.0 / WPF / windows target only
