@@ -1,4 +1,4 @@
-# RiotSlider [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md) [![한국어](https://img.shields.io/badge/Language-한국어-red.svg)](README.ko.md) [![中文](https://img.shields.io/badge/Language-中文-red.svg)](README.zh-CN.md)
+# RiotSlider [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md) [![中文](https://img.shields.io/badge/Language-中文-red.svg)](README.zh-CN.md) [![한국어](https://img.shields.io/badge/Language-한국어-red.svg)](README.ko.md)
 
 受英雄联盟启发的WPF CustomControl Slider实现，展示了高级WPF技术和控件自定义
 
